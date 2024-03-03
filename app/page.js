@@ -7,12 +7,25 @@ import AudioButtons from "./components/AudioButtons";
 import QuizComponent from "./components/QuizContainer";
 import Welcome from "./components/Welcome";
 import Instruction1 from "./components/Instruction1";
+import Instruction2 from './components/Instruction2';
+import Start from './components/Start';
+import QuizTypeButtons from './components/QuizType';
 
 export default function Home() {
+  const [selectedQuizType, setSelectedQuizType] = useState('GeneralKnowledge');
+  const [containerBorder, setContainerBorder] = useState('border-pink-500/0'); 
   const [currentInstruction, setCurrentInstruction] = useState(1);
   const [isAudioOn, setIsAudioOn] = useState(true);
   const [showAudioButtons, setShowAudioButtons] = useState(false);
+  const [selectedDifficulty, setSelectedDifficulty] = useState('Normal');
+  const [startSeconds, setStartSeconds] = useState(22);
+  const [HrColor, setHrColor] = useState('border-pink-500');
   const audioPlayerRef = useRef();
+
+  const handleQuizTypeChange = (newQuizType, newContainerBorder) => {
+    setSelectedQuizType(newQuizType);
+    setContainerBorder(newContainerBorder);
+  };
 
   const handleNextButtonClick = () => {
     setCurrentInstruction(currentInstruction + 1);
@@ -20,18 +33,25 @@ export default function Home() {
 
   const handlePreviousClick = () => {
     setCurrentInstruction(currentInstruction - 1);
-  };
 
-  const handleWelcomeFinish = () => {
+    if (currentInstruction === 2) {
+    setContainerBorder('border-pink-500/0'); 
+    setSelectedQuizType('GeneralKnowledge');
+  }
+};
+
+  const handleWelcomeFinish = (difficulty, seconds, HrColor) => {
     setShowAudioButtons(true);
     setIsAudioOn(true);
 
-    // Start playing the music
     const audioPlayer = audioPlayerRef.current;
     audioPlayer.play();
 
-    // Move to the next instruction
     handleNextButtonClick();
+
+    setSelectedDifficulty(difficulty);
+    setStartSeconds(seconds);
+    setHrColor(HrColor);
   };
 
   const toggleAudio = () => {
@@ -47,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-black font-mono flex justify-center">
+    <main className="bg-black font-mono flex flex-col items-center">
            
 <Navbar />
 
@@ -57,9 +77,12 @@ export default function Home() {
 
       <h1 className="text-3xl md:text-5xl font-bold fixed text-white/60 text-center mt-5">TIMEWISE</h1>
 
-      {currentInstruction === 1 && <Welcome onNextClick={handleNextButtonClick}  onWelcomeFinish={handleWelcomeFinish} />}
-      {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} />}
-      {currentInstruction === 5 && <QuizComponent />}
+      {currentInstruction === 1 && <QuizTypeButtons onQuizTypeChange={handleQuizTypeChange} />}
+    {currentInstruction === 1 && <Welcome quizType={selectedQuizType} containerBorder={containerBorder} onNextClick={handleNextButtonClick} onWelcomeFinish={handleWelcomeFinish} />}
+    {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
+    {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
+    {currentInstruction === 4 && <Start onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
+    {currentInstruction === 5 && <QuizComponent />}
       
       
 
@@ -68,3 +91,6 @@ export default function Home() {
     
   );
 }
+
+
+// onStartClick={handleStartButtonClick}

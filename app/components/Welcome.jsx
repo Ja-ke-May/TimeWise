@@ -1,39 +1,47 @@
 import React, { useState } from 'react';
 
-const Welcome = ({ onWelcomeFinish }) => {
+const Welcome = ({ onWelcomeFinish, quizType, containerBorder }) => {
+
+  const difficultySettings = {
+    Easy: {
+      seconds: 44,
+      hrColor: 'border-green-500',
+    },
+    Normal: {
+      seconds: 22,
+      hrColor: 'border-pink-500',
+    },
+    Hard: {
+      seconds: 5,
+      hrColor: 'border-red-500',
+    },
+  };
+
   const [selectedDifficulty, setSelectedDifficulty] = useState('Normal');
+
+  // Destructuring the difficulty object to get seconds and HrColor
+  const { seconds, hrColor } = difficultySettings[selectedDifficulty];
 
   const handleDifficultyClick = (difficulty) => {
     setSelectedDifficulty(difficulty);
   };
 
   const handleNextButtonClick = () => {
-    onWelcomeFinish(selectedDifficulty); 
+    onWelcomeFinish(selectedDifficulty, seconds, hrColor);
+    console.log(selectedDifficulty, seconds, hrColor);
   };
 
-  const getHrColor = () => {
-    switch (selectedDifficulty) {
-      case 'Easy':
-        return 'border-green-500';
-      case 'Normal':
-        return 'border-pink-500';
-      case 'Hard':
-        return 'border-red-500';
-      default:
-        return 'border-white'; 
-    }
-  };
+  const formattedQuizType = quizType.replace(/([a-z])([A-Z])/g, '$1 $2');
 
   return (
-    <div className="absolute mt-60 mb-40 ml-5 mr-5 ">
-      <section id="welcome-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
-        <div className="text-2xl flex items-center justify-center absolute inset-x-0">
+    <div className={`relative mt-20 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
+      <div id="welcome-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
+        <div className="text-2xl flex items-center justify-center inset-x-0">
           Welcome to TimeWise
         </div>
-        <br />
-        <hr className={`m-3 ${getHrColor()}`} />
+        <hr className={`m-3 ${hrColor}`} />
         <div className="mb-5 text-2xl">
-          The general knowledge quiz where every second counts!
+          The {formattedQuizType} quiz where every second counts!
         </div>
         <div className="grid grid-cols-2 gap-4 justify-center">
           <button
@@ -77,7 +85,7 @@ const Welcome = ({ onWelcomeFinish }) => {
             Next
           </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
