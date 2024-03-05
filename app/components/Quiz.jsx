@@ -1,20 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { generalKnowledgeQuestions } from './GeneralKnowledgeQuestions';
-import { musicQuestions } from './MusicQuestions';
-import { sportQuestions } from './SportQuestions';
+import { generalKnowledgeQuestions } from './questions/GeneralKnowledgeQuestions';
+import { musicQuestions } from './questions/MusicQuestions';
+import { sportQuestions } from './questions/SportQuestions';
+import { geographyQuestions } from './questions/GeographyQuestions';
+import { historyQuestions } from './questions/HistoryQuestions';
+import { popularCultureQuestions } from './questions/PopularCultureQuestions';
+import { scienceQuestions } from './questions/ScienceQuestions';
 
-const QuizComponent = ({ startSeconds, selectedQuizType,  }) => {
+
+const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColor }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionContent, setQuestionContent] = useState('');
   const [count, setCount] = useState(0);
-  const [timer, setTimer] = useState(null);
-  const [timerDuration, setTimerDuration] = useState(startSeconds || 22);
-  const [greenPlusVisible, setGreenPlusVisible] = useState(false);
-  const [redMinusVisible, setRedMinusVisible] = useState(false);
-  const [timerClass, setTimerClass] = useState('');
-  const [timerContent, setTimerContent] = useState('');
   const [answerOptions, setAnswerOptions] = useState([]);
+  const [showPlus, setShowPlus] = useState(false);
+  const [showMinus, setShowMinus] = useState(false);
+  const [totalTime, setTotalTime] = useState(startSeconds);
+
+  useEffect(() => {
+    let timerInterval;
+
+    // Function to update the timer
+    const updateTimer = () => {
+      setTotalTime((prevTime) => prevTime - 1);
+    };
+
+    // Start the timer when the component mounts
+    if (totalTime > 0) {
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    // Clear the interval when the component unmounts or when totalTime reaches 0
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [totalTime]);
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      loadQuestion();
+    }
+  }, [currentQuestionIndex, questions]);
+
+  const checkAnswer = (selectedAnswer) => {
+    const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+
+    if (selectedAnswer === correctAnswer) {
+      setCount(count + 1);
+      setTotalTime((prevTime) => prevTime + 3); 
+      setShowPlus(true);
+
+      setTimeout(() => {
+        setShowPlus(false);
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      }, 500);
+    } else {
+      setTotalTime((prevTime) => Math.max(0, prevTime - 5)); 
+      setShowMinus(true);
+
+      setTimeout(() => {
+        setShowMinus(false);
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      }, 500);
+    }
+  };
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -27,14 +77,31 @@ const QuizComponent = ({ startSeconds, selectedQuizType,  }) => {
   useEffect(() => {
     let selectedQuestions = [];
 
-    if (selectedQuizType && (selectedQuizType === 'GeneralKnowledge' || selectedQuizType === 'Music' || selectedQuizType === 'Sport')) {
+    if (
+      selectedQuizType &&
+      (selectedQuizType === 'GeneralKnowledge' ||
+        selectedQuizType === 'Music' ||
+        selectedQuizType === 'Sport' ||
+        selectedQuizType === 'Geography' ||
+        selectedQuizType === 'History' ||
+        selectedQuizType === 'PopularCulture' ||
+        selectedQuizType === 'Science')
+    ) {
       if (selectedQuizType === 'GeneralKnowledge') {
         selectedQuestions = generalKnowledgeQuestions;
       } else if (selectedQuizType === 'Music') {
         selectedQuestions = musicQuestions;
       } else if (selectedQuizType === 'Sport') {
         selectedQuestions = sportQuestions;
-      }
+      } else if (selectedQuizType === 'Geography') {
+        selectedQuestions = geographyQuestions;
+      } else if (selectedQuizType === 'History') {
+        selectedQuestions = historyQuestions;
+      } else if (selectedQuizType === 'PopularCulture') {
+        selectedQuestions = popularCultureQuestions;
+      } else if (selectedQuizType === 'Science') {
+        selectedQuestions = scienceQuestions;
+      }      
 
       if (selectedQuestions.length > 0) {
         setQuestions(shuffleArray([...selectedQuestions]));
@@ -49,16 +116,8 @@ const QuizComponent = ({ startSeconds, selectedQuizType,  }) => {
   useEffect(() => {
     if (questions.length > 0) {
       loadQuestion();
-      startTimer(); // Start the timer when questions are loaded
     }
   }, [currentQuestionIndex, questions]);
-
-  useEffect(() => {
-    if (timerDuration <= 0) {
-      clearInterval(timer);
-      // Handle logic when time is up
-    }
-  }, [timerDuration]);
 
   const loadQuestion = () => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -71,73 +130,21 @@ const QuizComponent = ({ startSeconds, selectedQuizType,  }) => {
     }
   };
 
-  const checkAnswer = (selectedAnswer) => {
-    const correctAnswer = questions[currentQuestionIndex].correctAnswer;
-
-    if (selectedAnswer === correctAnswer) {
-      setCount(count + 1);
-      setTimerDuration((prevDuration) => prevDuration + 3);
-      setGreenPlusVisible(true);
-      setTimeout(() => {
-        setGreenPlusVisible(false);
-      }, 500);
-    } else {
-      setTimerDuration((prevDuration) => prevDuration - 5);
-      setRedMinusVisible(true);
-      setTimeout(() => {
-        setRedMinusVisible(false);
-      }, 500);
-    }
-
-    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-  };
-
-  const updateTimer = () => {
-    setTimerDuration((prevDuration) => {
-      const minutes = Math.floor(prevDuration / 60);
-      const seconds = prevDuration % 60;
-      const content = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      setTimerContent(content);
-      updateTimerColor();
-      return prevDuration;
-    });
-  };  
-
-  const startTimer = () => {
-    setTimer(setInterval(() => {
-      setTimerDuration((prevDuration) => prevDuration - 1);
-      updateTimer();
-    }, 1000));
-  };
-
-  const resetTimer = () => {
-    clearInterval(timer);
-    setTimerDuration(startSeconds || 22);
-    updateTimer();
-  };
-
-  const resetQuiz = () => {
-    setCurrentQuestionIndex(0);
-    setCount(0);
-    shuffleArray(questions);
-    loadQuestion();
-    resetTimer();
-  };
-
-  const updateTimerColor = () => {
-    setTimerClass(timerDuration <= 5 && timerDuration >= 0 ? 'text-red-500 brightness-125' : '');
-  };
+ 
 
   return (
-    <div className="relative mt-60 mb-40 ml-5 mr-5">
+    <div className={`relative mt-40 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
       <section id="quiz-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
-        <div id="green-plus" className={`hidden text-green-500 text-3xl float-right mr-10 pb-1 ${greenPlusVisible && 'block'}`}>+3</div>
-        <div id="red-minus" className={`hidden text-red-500 text-3xl float-left ml-10 pb-1 ${redMinusVisible && 'block'}`}>-5</div>
-        <div id="timer" className={`text-2xl flex items-center justify-center absolute inset-x-0 ${timerClass}`}>
-          {timerContent}
-        </div>
+      <div id="green-plus" className={`text-green-500 text-3xl float-right mr-10 pb-1 ${showPlus ? 'visible' : 'invisible'}`}>+3</div>
+        <div id="red-minus" className={`text-red-500 text-3xl float-left ml-10 pb-1 ${showMinus ? 'visible' : 'invisible'}`}>-5</div>
+        <div
+        id="timer"
+        className={`text-2xl flex items-center justify-center absolute inset-x-0 ${totalTime <= 5 ? 'text-red-500 brightness-125' : ''}`}
+      >
+        {totalTime < 10 ? `00:0${totalTime}` : `00:${totalTime}`}
+      </div>
         <br />
-        <hr className="border-pink-500 m-3" />
+        <hr className={`m-3 ${HrColor}`} />
         <div id="question-box" className="mb-5 text-2xl">
           {questionContent}
         </div>
