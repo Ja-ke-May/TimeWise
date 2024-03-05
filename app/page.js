@@ -4,7 +4,8 @@ import React, { useState, useRef } from 'react';
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import AudioButtons from "./components/AudioButtons";
-import QuizComponent from "./components/QuizContainer";
+import Quiz from "./components/Quiz";
+import EndQuizContainer from './components/EndQuizContainer';  // Import corrected component
 import Welcome from "./components/Welcome";
 import Instruction1 from "./components/Instruction1";
 import Instruction2 from './components/Instruction2';
@@ -20,11 +21,17 @@ export default function Home() {
   const [selectedDifficulty, setSelectedDifficulty] = useState('Normal');
   const [startSeconds, setStartSeconds] = useState(22);
   const [HrColor, setHrColor] = useState('border-pink-500');
+  const [finalScore, setFinalScore] = useState(0);  // Add state for finalScore
+  const [finalTime, setFinalTime] = useState(0);    // Add state for finalTime
   const audioPlayerRef = useRef();
 
   const handleQuizTypeChange = (newQuizType, newContainerBorder) => {
     setSelectedQuizType(newQuizType);
     setContainerBorder(newContainerBorder);
+  };
+
+  const handleQuestionsLoad = (loadedQuestions) => {
+    setQuestions(loadedQuestions);
   };
 
   const handleNextButtonClick = () => {
@@ -35,10 +42,10 @@ export default function Home() {
     setCurrentInstruction(currentInstruction - 1);
 
     if (currentInstruction === 2) {
-    setContainerBorder('border-pink-500/0'); 
-    setSelectedQuizType('GeneralKnowledge');
-  }
-};
+      setContainerBorder('border-pink-500/0'); 
+      setSelectedQuizType('GeneralKnowledge');
+    }
+  };
 
   const handleWelcomeFinish = (difficulty, seconds, HrColor) => {
     setShowAudioButtons(true);
@@ -68,29 +75,20 @@ export default function Home() {
 
   return (
     <main className="bg-black font-mono flex flex-col items-center">
-           
-<Navbar />
+      <Navbar />
 
-{showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
-      
-<audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
-
+      {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
+      <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
       <h1 className="text-3xl md:text-5xl font-bold fixed text-white/60 text-center mt-5">TIMEWISE</h1>
-
       {currentInstruction === 1 && <QuizTypeButtons onQuizTypeChange={handleQuizTypeChange} />}
     {currentInstruction === 1 && <Welcome quizType={selectedQuizType} containerBorder={containerBorder} onNextClick={handleNextButtonClick} onWelcomeFinish={handleWelcomeFinish} />}
     {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
     {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
-    {currentInstruction === 4 && <Start onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
-    {currentInstruction === 5 && <QuizComponent />}
-      
-      
+    {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
+    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad} onQuizFinish={(score, time) => { setFinalScore(score); setFinalTime(time); handleNextButtonClick(); }} />}
+      {currentInstruction === 6 && <EndQuizContainer finalTime={finalTime} finalScore={finalScore} />}
 
       <Footer />
     </main>
-    
   );
 }
-
-
-// onStartClick={handleStartButtonClick}

@@ -1,54 +1,54 @@
 "use client";
 
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 
 const QuizType = ({ onQuizTypeChange }) => {
 
     const quizTypeSettings = {
       GeneralKnowledge: {
-        questions: '/GeneralKnowledgeQuestions',
+        questions: 'GeneralKnowledgeQuestions',
         containerBorder: 'border-pink-500/0',
         bgColor: 'bg-black/10',
         textColor: 'text-pink-500',
         borderColor: 'border-pink-500',
       },
       Music: {
-        questions: '/MusicQuestions',
+        questions: 'MusicQuestions',
         containerBorder: 'border-orange-500/50',
         bgColor: 'bg-black/10',
         textColor: 'text-orange-500',
         borderColor: 'border-orange-500',
       },
       Sport: {
-        questions: '/SportQuestions',
+        questions: 'SportQuestions',
         containerBorder: 'border-blue-500/50',
         bgColor: 'bg-black/10',
         textColor: 'text-blue-500',
         borderColor: 'border-blue-500',
       },
       Geography: {
-        questions: '/GeographyQuestions',
+        questions: 'GeographyQuestions',
         containerBorder: 'border-green-500/50',
         bgColor: 'bg-black/20',
         textColor: 'text-green-500',
         borderColor: 'border-green-500',
       },
       History: {
-        questions: '/HistoryQuestions',
+        questions: 'HistoryQuestions',
         containerBorder: 'border-purple-500/50',
         bgColor: 'bg-black/30',
         textColor: 'text-purple-500',
         borderColor: 'border-purple-500',
       },
       PopularCulture: {
-        questions: '/PopularCultureQuestions',
+        questions: 'PopularCultureQuestions',
         containerBorder: 'border-yellow-500/50',
         bgColor: 'bg-black/40',
         textColor: 'text-yellow-500',
         borderColor: 'border-yellow-500',
       },
       Science: {
-        questions: '/ScienceQuestions',
+        questions: 'ScienceQuestions',
         containerBorder: 'border-teal-500/50',
         bgColor: 'bg-black/50',
         textColor: 'text-teal-500',
@@ -57,12 +57,21 @@ const QuizType = ({ onQuizTypeChange }) => {
     };
   
     const [selectedQuizType, setSelectedQuizType] = useState('GeneralKnowledge');
-  
+    const [questions, setQuestions] = useState([]);
     const { bgColor, textColor, borderColor } = quizTypeSettings[selectedQuizType];
+    
+
+    useEffect(() => {
+      // Load questions when the selected quiz type changes
+      import(`./${quizTypeSettings[selectedQuizType].questions}`).then((module) => {
+        setQuestions(module.default); // Assuming the questions are exported as a default export
+      });
+    }, [selectedQuizType]);
 
     const handleQuizTypeClick = (quizType) => {
         setSelectedQuizType(quizType);
         onQuizTypeChange(quizType, quizTypeSettings[quizType].containerBorder);
+        console.log(quizType)
       };
   
       return (
