@@ -18,7 +18,7 @@ const Instruction1 = ( { onPreviousClick, onNextClick, HrColor, startSeconds, co
         Answer multiple-choice questions by clicking or tapping your choice.
                 You begin with {startSeconds} seconds on the clock.
         </div>
-        <div class="grid grid-cols-2 gap-4 justify-center">
+        <div className="grid grid-cols-2 gap-4 justify-center">
                 <p></p>
                 <p ></p>
                 <button id="instruction1-previous" className="bg-pink-500 text-white text-center px-3 py-2 rounded" onClick={onPreviousClick}>Previous</button>

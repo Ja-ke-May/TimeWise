@@ -21,8 +21,6 @@ export default function Home() {
   const [selectedDifficulty, setSelectedDifficulty] = useState('Normal');
   const [startSeconds, setStartSeconds] = useState(22);
   const [HrColor, setHrColor] = useState('border-pink-500');
-  const [finalScore, setFinalScore] = useState(0);  // Add state for finalScore
-  const [finalTime, setFinalTime] = useState(0);    // Add state for finalTime
   const audioPlayerRef = useRef();
 
   const handleQuizTypeChange = (newQuizType, newContainerBorder) => {
@@ -85,8 +83,7 @@ export default function Home() {
     {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
     {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
-    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad} onQuizFinish={(score, time) => { setFinalScore(score); setFinalTime(time); handleNextButtonClick(); }} />}
-      {currentInstruction === 6 && <EndQuizContainer finalTime={finalTime} finalScore={finalScore} />}
+    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
 
       <Footer />
     </main>
