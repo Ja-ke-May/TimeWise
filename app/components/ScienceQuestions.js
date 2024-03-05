@@ -1,5 +1,5 @@
-// easy to change questions if needed
-const generalKnowledgeQuestions = [
+
+export const scienceQuestions = [
     {
       question: "Which planet is known as the 'Red Planet'?",
       options: ["Venus", "Jupiter", "Mars", "Saturn"],
