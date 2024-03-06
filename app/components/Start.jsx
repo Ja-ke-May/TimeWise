@@ -4,7 +4,7 @@ const Instruction3 = ({ onPreviousClick, onNextClick, containerBorder, HrColor }
   return (
     <div className={`relative mt-40 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
     <div id="start-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
-      <p className="text-2xl flex items-center justify-center inset-x-0">
+      <p className="text-2xl flex items-center justify-center inset-x-0 mt-2">
       Remember, Time is limited.
       <br />
       So be wise...</p>

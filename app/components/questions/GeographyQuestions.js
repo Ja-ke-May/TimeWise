@@ -1,168 +1,167 @@
-
 export const geographyQuestions = [
-    {
-      question: "Which planet is known as the 'Red Planet'?",
-      options: ["Venus", "Jupiter", "Mars", "Saturn"],
-      correctAnswer: "Mars",
-    },
-    {
-      question: "Who wrote the famous play 'Hamlet'?",
-      options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
-      correctAnswer: "William Shakespeare",
-    },
-    {
-      question: "In which year did the Titanic sink?",
-      options: ["1912", "1923", "1931", "1945"],
-      correctAnswer: "1912",
-    },
-    {
-      question: "What is the capital city of Japan?",
-      options: ["Beijing", "Seoul", "Tokyo", "Bangkok"],
-      correctAnswer: "Tokyo",
-    },
-    {
-      question: "Who is the author of 'To Kill a Mockingbird'?",
-      options: ["J.K. Rowling", "Harper Lee", "George Orwell", "Ernest Hemingway"],
-      correctAnswer: "Harper Lee",
-    },
-    {
-      question: "Which element has the chemical symbol 'O'?",
-      options: ["Oxygen", "Gold", "Osmium", "Iodine"],
-      correctAnswer: "Oxygen",
-    },
-    {
-      question: "Which mountain is the highest in the world?",
-      options: ["Mount Everest", "K2", "Makalu", "Lhotse"],
-      correctAnswer: "Mount Everest",
-    },
-    {
-      question: "What is the currency of Brazil?",
-      options: ["Peso", "Real", "Dollar", "Euro"],
-      correctAnswer: "Real",
-    },
-    {
-      question: "Who is known as the 'Father of Computer Science'?",
-      options: ["Alan Turing", "Bill Gates", "Steve Jobs", "Ada Lovelace"],
-      correctAnswer: "Alan Turing",
-    },
-    {
-      question: "In which year did the Berlin Wall fall?",
-      options: ["1989", "1991", "1977", "1995"],
-      correctAnswer: "1989",
-    },
-    {
-      question: "What is the largest mammal on Earth?",
-      options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-      correctAnswer: "Blue Whale",
-    },
-    {
-      question: "Who painted the 'Mona Lisa'?",
-      options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
-      correctAnswer: "Leonardo da Vinci",
-    },
-    {
-      question: "Which gas do plants absorb from the atmosphere?",
-      options: ["Oxygen", "Carbon Monoxide", "Nitrogen", "Carbon Dioxide"],
-      correctAnswer: "Carbon Dioxide",
-    },
-    {
-      question: "What is the largest desert in the world?",
-      options: ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Antarctica"],
-      correctAnswer: "Antarctica",
-    },
-    {
-      question: "Who discovered penicillin?",
-      options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Joseph Lister"],
-      correctAnswer: "Alexander Fleming",
-    },
-    {
-      question: "Which planet is known as the 'Morning Star'?",
-      options: ["Mercury", "Venus", "Mars", "Jupiter"],
-      correctAnswer: "Venus",
-    },
-    {
-      question: "What is the largest ocean on Earth?",
-      options: ["Atlantic Ocean", "Indian Ocean", "Southern Ocean", "Pacific Ocean"],
-      correctAnswer: "Pacific Ocean",
-    },
-    {
-      question: "Who wrote the 'Iliad' and the 'Odyssey'?",
-      options: ["Homer", "Virgil", "Sophocles", "Aristotle"],
-      correctAnswer: "Homer",
-    },
-    {
-      question: "In which year did World War II end?",
-      options: ["1945", "1950", "1939", "1941"],
-      correctAnswer: "1945",
-    },
-    {
-      question: "What is the largest planet in our solar system?",
-      options: ["Earth", "Jupiter", "Saturn", "Neptune"],
-      correctAnswer: "Jupiter",
-    },
-    {
-      question: "Which country is known as the 'Land of the Rising Sun'?",
-      options: ["China", "South Korea", "Japan", "Vietnam"],
-      correctAnswer: "Japan",
+  {
+    question: "Which sea is located between Greece and Turkey?",
+    options: ["Caspian Sea", "Mediterranean Sea", "Black Sea", "Aegean Sea"],
+    correctAnswer: "Aegean Sea",
   },
   {
-      question: "Who is the 16th President of the United States?",
-      options: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John F. Kennedy"],
-      correctAnswer: "Abraham Lincoln",
+    question: "In which continent is the Sahara Desert located?",
+    options: ["Africa", "Asia", "North America", "South America"],
+    correctAnswer: "Africa",
   },
   {
-      question: "What is the largest continent on Earth?",
-      options: ["North America", "Europe", "Asia", "Australia"],
-      correctAnswer: "Asia",
+    question: "What is the largest island in the Caribbean?",
+    options: ["Cuba", "Jamaica", "Hispaniola", "Puerto Rico"],
+    correctAnswer: "Cuba",
   },
   {
-      question: "Who wrote 'Romeo and Juliet'?",
-      options: ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"],
-      correctAnswer: "William Shakespeare",
+    question: "Which country is known as the 'Land of a Thousand Lakes'?",
+    options: ["Canada", "Finland", "Sweden", "Norway"],
+    correctAnswer: "Finland",
   },
   {
-      question: "Which chemical element has the symbol 'H'?",
-      options: ["Helium", "Hydrogen", "Hassium", "Hafnium"],
-      correctAnswer: "Hydrogen",
+    question: "Which mountain range separates Europe and Asia?",
+    options: ["Himalayas", "Andes", "Alps", "Ural Mountains"],
+    correctAnswer: "Ural Mountains",
   },
   {
-      question: "What is the capital city of France?",
-      options: ["Berlin", "Madrid", "Paris", "Rome"],
-      correctAnswer: "Paris",
+    question: "What is the capital city of Argentina?",
+    options: ["Buenos Aires", "Rio de Janeiro", "Lima", "Bogota"],
+    correctAnswer: "Buenos Aires",
   },
   {
-      question: "Who is the 44th President of the United States?",
-      options: ["Barack Obama", "Donald Trump", "George W. Bush", "Bill Clinton"],
-      correctAnswer: "Barack Obama",
+    question: "In which ocean is the Bermuda Triangle located?",
+    options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+    correctAnswer: "Atlantic Ocean",
   },
   {
-      question: "In which year was the Eiffel Tower completed?",
-      options: ["1889", "1901", "1923", "1945"],
-      correctAnswer: "1889",
+    question: "Which river flows through the Grand Canyon?",
+    options: ["Colorado River", "Mississippi River", "Amazon River", "Nile River"],
+    correctAnswer: "Colorado River",
   },
-  {
-      question: "What is the capital city of Australia?",
-      options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
-      correctAnswer: "Canberra",
-  },
-  {
-      question: "Who wrote '1984'?",
-      options: ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Philip K. Dick"],
-      correctAnswer: "George Orwell",
-  },
-  {
-      question: "Who is the author of 'The Great Gatsby'?",
-      options: ["F. Scott Fitzgerald", "Ernest Hemingway", "Jane Austen", "Charles Dickens"],
-      correctAnswer: "F. Scott Fitzgerald",
-  },
-  {
-      question: "What is the largest river in the world?",
-      options: ["Amazon River", "Nile River", "River Aire", "Mississippi River"],
-      correctAnswer: "Nile River",
-  },
-  {
-    question: "Who developed the theory of general relativity?",
-    options: ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Galileo Galilei"],
-    correctAnswer: "Albert Einstein",
-  }
+{
+  question: "Which river is the longest in the world?",
+  options: ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"],
+  correctAnswer: "Nile River",
+},
+{
+  question: "What is the capital city of Australia?",
+  options: ["Sydney", "Melbourne", "Canberra", "Perth"],
+  correctAnswer: "Canberra",
+},
+{
+  question: "Which African country is known as the 'Rainbow Nation'?",
+  options: ["Kenya", "Nigeria", "South Africa", "Ghana"],
+  correctAnswer: "South Africa",
+},
+{
+  question: "In which country would you find the ancient city of Petra?",
+  options: ["Iraq", "Iran", "Jordan", "Syria"],
+  correctAnswer: "Jordan",
+},
+{
+  question: "What is the highest mountain in North America?",
+  options: ["Mount McKinley (Denali)", "Mount Rainier", "Mount Elbert", "Mount Hood"],
+  correctAnswer: "Mount McKinley (Denali)",
+},
+{
+  question: "Which desert is the largest hot desert in the world?",
+  options: ["Gobi Desert", "Sahara Desert", "Karakum Desert", "Arabian Desert"],
+  correctAnswer: "Sahara Desert",
+},
+{
+  question: "In which European country is the city of Prague located?",
+  options: ["Germany", "Austria", "Czech Republic", "Poland"],
+  correctAnswer: "Czech Republic",
+},
+{
+  question: "Which Asian river is often referred to as the 'River of Sorrows'?",
+  options: ["Yangtze River", "Mekong River", "Yellow River", "Ganges River"],
+  correctAnswer: "Yellow River",
+},
+{
+  question: "What is the largest lake in Africa?",
+  options: ["Lake Victoria", "Lake Tanganyika", "Lake Malawi", "Lake Chad"],
+  correctAnswer: "Lake Victoria",
+},
+{
+  question: "In which country would you find the ancient city of Machu Picchu?",
+  options: ["Peru", "Ecuador", "Colombia", "Bolivia"],
+  correctAnswer: "Peru",
+},
+{
+  question: "Which strait separates Saudi Arabia from Iran?",
+  options: ["Bab el Mandeb", "Strait of Hormuz", "Strait of Gibraltar", "Taiwan Strait"],
+  correctAnswer: "Strait of Hormuz",
+},
+{
+  question: "What is the capital city of South Korea?",
+  options: ["Seoul", "Busan", "Incheon", "Daegu"],
+  correctAnswer: "Seoul",
+},
+{
+  question: "Which island nation is known as the 'Pearl of the Indian Ocean'?",
+  options: ["Maldives", "Seychelles", "Mauritius", "Sri Lanka"],
+  correctAnswer: "Sri Lanka",
+},
+{
+  question: "In which country would you find the city of Marrakech?",
+  options: ["Egypt", "Morocco", "Algeria", "Tunisia"],
+  correctAnswer: "Morocco",
+},
+{
+  question: "What is the capital city of New Zealand?",
+  options: ["Auckland", "Wellington", "Christchurch", "Hamilton"],
+  correctAnswer: "Wellington",
+},
+{
+  question: "Which strait separates Greenland from Canada?",
+  options: ["Bering Strait", "Davis Strait", "Hudson Strait", "Fury and Hecla Strait"],
+  correctAnswer: "Davis Strait",
+},
+{
+  question: "In which country would you find the Great Barrier Reef?",
+  options: ["Australia", "Indonesia", "Philippines", "Papua New Guinea"],
+  correctAnswer: "Australia",
+},
+{
+  question: "Which river is known as the 'River of Gold'?",
+  options: ["Yukon River", "Parana River", "Orinoco River", "Amazon River"],
+  correctAnswer: "Parana River",
+},
+{
+  question: "What is the capital city of Nigeria?",
+  options: ["Lagos", "Abuja", "Kano", "Ibadan"],
+  correctAnswer: "Abuja",
+},
+{
+  question: "Which island is known as the 'Island of the Gods'?",
+  options: ["Bali", "Hawaii", "Santorini", "Ibiza"],
+  correctAnswer: "Bali",
+},
+{
+  question: "In which ocean is the Great Barrier Reef located?",
+  options: ["Pacific Ocean", "Indian Ocean", "Southern Ocean", "Antarctic Ocean"],
+  correctAnswer: "Pacific Ocean",
+},
+{
+  question: "Which mountain range is often called the 'Roof of the World'?",
+  options: ["Himalayas", "Andes", "Rocky Mountains", "Alps"],
+  correctAnswer: "Himalayas",
+},
+{
+  question: "What is the smallest country in the world?",
+  options: ["Vatican City", "Monaco", "Nauru", "Tuvalu"],
+  correctAnswer: "Vatican City",
+},
+{
+  question: "Which African river is the longest in the world?",
+  options: ["Congo River", "Niger River", "Zambezi River", "Nile River"],
+  correctAnswer: "Nile River",
+},
+{
+  question: "In which country would you find the ancient city of Athens?",
+  options: ["Italy", "Greece", "Turkey", "Spain"],
+  correctAnswer: "Greece",
+},
 ];

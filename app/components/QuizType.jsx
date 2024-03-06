@@ -97,7 +97,7 @@ const QuizType = ({ onQuizTypeChange }) => {
           ))}
         </div>
         <p className={`relative ${textColor} mt-2`}>
-  New Questions Every <span className='text-pink-500'>{quizTypeSettings[selectedQuizType].newQuestionDay}</span></p>
+  New {selectedQuizType.replace(/([a-z])([A-Z])/g, '$1 $2')} Questions Every <span className='text-pink-500'>{quizTypeSettings[selectedQuizType].newQuestionDay}</span></p>
  </>
       );    
             }  
