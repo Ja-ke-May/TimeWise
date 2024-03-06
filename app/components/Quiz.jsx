@@ -6,65 +6,62 @@ import { geographyQuestions } from './questions/GeographyQuestions';
 import { historyQuestions } from './questions/HistoryQuestions';
 import { popularCultureQuestions } from './questions/PopularCultureQuestions';
 import { scienceQuestions } from './questions/ScienceQuestions';
+import EndQuizContainer from './EndQuizContainer';  
 
-
-const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColor }) => {
+const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColor, onPreviousClick, }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionContent, setQuestionContent] = useState('');
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [answerOptions, setAnswerOptions] = useState([]);
   const [showPlus, setShowPlus] = useState(false);
   const [showMinus, setShowMinus] = useState(false);
   const [totalTime, setTotalTime] = useState(startSeconds);
+  const [finalCount, setFinalCount] = useState(0);
 
   useEffect(() => {
     let timerInterval;
-
-    // Function to update the timer
+  
     const updateTimer = () => {
-      setTotalTime((prevTime) => prevTime - 1);
-    };
 
-    // Start the timer when the component mounts
+      if (questions[currentQuestionIndex]) {
+        setTotalTime((prevTime) => prevTime - 1);
+      }
+    };
+  
     if (totalTime > 0) {
       timerInterval = setInterval(updateTimer, 1000);
     }
-
-    // Clear the interval when the component unmounts or when totalTime reaches 0
+  
     return () => {
       clearInterval(timerInterval);
     };
-  }, [totalTime]);
-
-  useEffect(() => {
-    if (questions.length > 0) {
-      loadQuestion();
-    }
-  }, [currentQuestionIndex, questions]);
+  }, [totalTime, questions, currentQuestionIndex]);
 
   const checkAnswer = (selectedAnswer) => {
     const correctAnswer = questions[currentQuestionIndex].correctAnswer;
-
+  
     if (selectedAnswer === correctAnswer) {
       setCount(count + 1);
-      setTotalTime((prevTime) => prevTime + 3); 
-      setShowPlus(true);
+      setFinalCount((prevCount) => prevCount + 1);
 
+      setTotalTime((prevTime) => prevTime + 3);
+      setShowPlus(true);
+  
       setTimeout(() => {
         setShowPlus(false);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }, 500);
     } else {
-      setTotalTime((prevTime) => Math.max(0, prevTime - 5)); 
+      setTotalTime((prevTime) => Math.max(0, prevTime - 5));
       setShowMinus(true);
-
+  
       setTimeout(() => {
         setShowMinus(false);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }, 500);
     }
-  };
+  };  
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -130,9 +127,9 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
     }
   };
 
- 
-
   return (
+    <>
+  {(questions[currentQuestionIndex] && totalTime) ? (
     <div className={`relative mt-40 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
       <section id="quiz-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
       <div id="green-plus" className={`text-green-500 text-3xl float-right mr-10 pb-1 ${showPlus ? 'visible' : 'invisible'}`}>+3</div>
@@ -156,8 +153,18 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
           ))}
         </div>
       </section>
-    </div>
-  );
-};
-
+      </div>
+    ) : (
+      <div className={`relative mt-40 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
+      <div className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
+      <EndQuizContainer selectedQuizType={selectedQuizType} containerBorder={containerBorder} HrColor={HrColor} finalTime={totalTime} finalScore={finalCount} />
+      <button id="end-next" className="bg-pink-500 text-white text-center px-3 py-2 rounded m-2" onClick={onPreviousClick}>
+          Back to Start
+        </button>
+        </div>
+        </div>
+    )}
+  </>
+);
+    }
 export default QuizComponent;

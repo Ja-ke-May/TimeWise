@@ -5,7 +5,6 @@ import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import AudioButtons from "./components/AudioButtons";
 import Quiz from "./components/Quiz";
-import EndQuizContainer from './components/EndQuizContainer';  // Import corrected component
 import Welcome from "./components/Welcome";
 import Instruction1 from "./components/Instruction1";
 import Instruction2 from './components/Instruction2';
@@ -83,7 +82,7 @@ export default function Home() {
     {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
     {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
-    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
+    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} />}
 
       <Footer />
     </main>
