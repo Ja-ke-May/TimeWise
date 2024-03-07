@@ -7,7 +7,7 @@ const QuizType = ({ onQuizTypeChange }) => {
     const quizTypeSettings = {
       GeneralKnowledge: {
         questions: 'questions/GeneralKnowledgeQuestions',
-        containerBorder: 'border-pink-500/0',
+        containerBorder: 'border-pink-500/0 rounded',
         bgColor: 'bg-black/10',
         textColor: 'text-pink-500',
         borderColor: 'border-pink-500',
@@ -15,7 +15,7 @@ const QuizType = ({ onQuizTypeChange }) => {
       },
       Music: {
         questions: 'questions/MusicQuestions',
-        containerBorder: 'border-orange-500/50',
+        containerBorder: 'border-orange-500/50 rounded',
         bgColor: 'bg-black/10',
         textColor: 'text-orange-500',
         borderColor: 'border-orange-500',
@@ -23,7 +23,7 @@ const QuizType = ({ onQuizTypeChange }) => {
       },
       Geography: {
         questions: 'questions/GeographyQuestions',
-        containerBorder: 'border-green-500/50',
+        containerBorder: 'border-green-500/50 rounded',
         bgColor: 'bg-black/20',
         textColor: 'text-green-500',
         borderColor: 'border-green-500',
@@ -31,7 +31,7 @@ const QuizType = ({ onQuizTypeChange }) => {
       },
       Sport: {
         questions: 'questions/SportQuestions',
-        containerBorder: 'border-blue-500/50',
+        containerBorder: 'border-blue-500/50 rounded',
         bgColor: 'bg-black/10',
         textColor: 'text-blue-500',
         borderColor: 'border-blue-500',
@@ -39,7 +39,7 @@ const QuizType = ({ onQuizTypeChange }) => {
       },
       History: {
         questions: 'questions/HistoryQuestions',
-        containerBorder: 'border-purple-500/50',
+        containerBorder: 'border-purple-500/50 rounded',
         bgColor: 'bg-black/30',
         textColor: 'text-purple-500',
         borderColor: 'border-purple-500',
@@ -47,7 +47,7 @@ const QuizType = ({ onQuizTypeChange }) => {
       },
       PopularCulture: {
         questions: 'questions/PopularCultureQuestions',
-        containerBorder: 'border-yellow-500/50',
+        containerBorder: 'border-yellow-500/50 rounded',
         bgColor: 'bg-black/40',
         textColor: 'text-yellow-500',
         borderColor: 'border-yellow-500',
@@ -55,7 +55,7 @@ const QuizType = ({ onQuizTypeChange }) => {
       },
       Science: {
         questions: 'questions/ScienceQuestions',
-        containerBorder: 'border-teal-500/50',
+        containerBorder: 'border-teal-500/50 rounded',
         bgColor: 'bg-black/50',
         textColor: 'text-teal-500',
         borderColor: 'border-teal-500',
@@ -96,7 +96,7 @@ const QuizType = ({ onQuizTypeChange }) => {
             </button>
           ))}
         </div>
-        <p className={`relative ${textColor} mt-2`}>
+        <p className={`relative ${textColor} mt-2 text-center ml-2 mr-2`}>
   New {selectedQuizType.replace(/([a-z])([A-Z])/g, '$1 $2')} Questions Every <span className='text-pink-500'>{quizTypeSettings[selectedQuizType].newQuestionDay}</span></p>
  </>
       );    

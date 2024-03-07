@@ -74,8 +74,7 @@ export default function Home() {
     <main className="bg-black font-mono flex flex-col items-center">
       <Navbar />
 
-      {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
-      <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
+      
       <h1 className="text-3xl md:text-5xl font-bold fixed text-white/60 text-center mt-5">TIMEWISE</h1>
       {currentInstruction === 1 && <QuizTypeButtons onQuizTypeChange={handleQuizTypeChange} />}
     {currentInstruction === 1 && <Welcome quizType={selectedQuizType} containerBorder={containerBorder} onNextClick={handleNextButtonClick} onWelcomeFinish={handleWelcomeFinish} />}
@@ -84,6 +83,9 @@ export default function Home() {
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
     {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} />}
 
+    {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
+      <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
+      
       <Footer />
     </main>
   );

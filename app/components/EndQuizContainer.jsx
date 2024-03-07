@@ -15,7 +15,7 @@ const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType }) 
         </>
       ) : (
         <>
-          <p id="end-message" className="text-3xl flex items-center justify-center">
+          <p id="end-message" className="text-3xl flex items-center justify-center inset-x-0">
             Congratulations!
           </p>
           <hr className={`m-3 ${HrColor}`} />
