@@ -1,10 +1,10 @@
 import React from 'react';
 
-const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType }) => {
+const EndQuizContainer = ({ finalScore, finalTime, HrColor, containerBorder, selectedQuizType }) => {
   const isOutOfTime = finalTime === 0;
 
   return (
-    <section id="end-container" className="relative p-6 bg-opacity-0 rounded mx-auto text-center text-white md:max-w-2xl">
+    <section id="end-container" className="relative p-2 bg-opacity-0 rounded mx-auto text-center text-white md:max-w-2xl">
       {isOutOfTime ? (
         <>
           <p id="end-message" className="text-3xl flex items-center justify-center inset-x-0">
@@ -14,7 +14,7 @@ const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType }) 
           <p className='text-2xl'>Your Score: {finalScore}</p>
         </>
       ) : (
-        <>
+  <>
           <p id="end-message" className="text-3xl flex items-center justify-center inset-x-0">
             Congratulations!
           </p>
