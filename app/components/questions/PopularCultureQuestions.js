@@ -106,9 +106,9 @@ export const popularCultureQuestions = [
     correctAnswer: "Casablanca",
   },
 {
-    query: "What is the name of the fictional spy agency in the 'James Bond' film series?",
-    choices: ["MI6", "CIA", "KGB", "SIS"],
-    correctChoice: "MI6",
+    question: "What is the name of the fictional spy agency in the 'James Bond' film series?",
+    options: ["MI6", "CIA", "KGB", "SIS"],
+    correctAnswer: "MI6",
 },
   {
     question: "In the TV series 'Stranger Things,' what is the name of the parallel dimension?",
