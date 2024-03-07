@@ -1,4 +1,3 @@
-
 export const scienceQuestions = [
   {
     question: "What is the chemical symbol for water?",
@@ -11,14 +10,14 @@ export const scienceQuestions = [
     correctAnswer: "Carbon Dioxide",
   },
   {
-    question: "What is the smallest unit of an element that retains the chemical properties of that element?",
+    question: "What is the smallest unit of living organisms?",
     options: ["Molecule", "Atom", "Cell", "Proton"],
-    correctAnswer: "Atom",
-  },
+    correctAnswer: "Cell",
+  },  
   {
-    question: "Which planet is known as the 'Red Planet'?",
+    question: "Which planet is known as the 'Morning Star'?",
     options: ["Venus", "Jupiter", "Mars", "Saturn"],
-    correctAnswer: "Mars",
+    correctAnswer: "Venus",
   },
   {
     question: "What is the largest organ in the human body?",
@@ -48,7 +47,7 @@ export const scienceQuestions = [
   {
     question: "What is the speed of light in a vacuum?",
     options: ["300,000 kilometers per second", "150,000 kilometers per second", "450,000 kilometers per second", "600,000 kilometers per second"],
-    correctAnswer: "Mitochondria",
+    correctAnswer: "300,000 kilometers per second",
   },
     {
       question: "What is the chemical symbol for the element with atomic number 1?",
@@ -81,9 +80,9 @@ export const scienceQuestions = [
       correctAnswer: "Femur",
     },
     {
-      question: "Which gas is responsible for the Earth's protective ozone layer?",
-      options: ["Methane", "Carbon Dioxide", "Oxygen", "Ozone"],
-      correctAnswer: "Ozone",
+      question: "What subatomic particle carries a positive electric charge?",
+      options: ["Electron", "Neutron", "Quark", "Proton"],
+      correctAnswer: "Proton",
     },
     {
       question: "What is the chemical symbol for sodium?",
@@ -121,24 +120,24 @@ export const scienceQuestions = [
       correctAnswer: "Acidity",
     },
     {
-      question: "Which planet is known as the 'Red Planet'?",
+      question: "Which planet is known as the 'Ringed Planet'?",
       options: ["Venus", "Mars", "Jupiter", "Saturn"],
-      correctAnswer: "Mars",
+      correctAnswer: "Saturn",
     },
     {
-      question: "What is the chemical symbol for gold?",
+      question: "What is the chemical symbol for silver?",
       options: ["Au", "Ag", "Fe", "Cu"],
-      correctAnswer: "Au",
+      correctAnswer: "Ag",
     },
     {
-      question: "Which gas is the most abundant in Earth's atmosphere?",
+      question: "Which gas do we need to breathe?",
       options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Argon"],
-      correctAnswer: "Nitrogen",
+      correctAnswer: "Oxygen",
     },
     {
-      question: "What is the process by which plants make their own food?",
-      options: ["Photosynthesis", "Respiration", "Fermentation", "Digestion"],
-      correctAnswer: "Photosynthesis",
+      question: "Which element has the chemical symbol 'Cu'?",
+      options: ["Iron", "Gold", "Silver", "Copper"],
+      correctAnswer: "Copper",
     },
     {
       question: "What is the atomic number of carbon?",

@@ -156,7 +156,7 @@ export const generalKnowledgeQuestions = [
       correctAnswer: "F. Scott Fitzgerald",
   },
   {
-      question: "What is the largest river in the world?",
+      question: "What is the longest river in the world?",
       options: ["Amazon River", "Nile River", "River Aire", "Mississippi River"],
       correctAnswer: "Nile River",
   },

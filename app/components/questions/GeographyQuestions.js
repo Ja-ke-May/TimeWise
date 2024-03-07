@@ -61,12 +61,12 @@ export const geographyQuestions = [
 },
 {
   question: "What is the highest mountain in North America?",
-  options: ["Mount McKinley (Denali)", "Mount Rainier", "Mount Elbert", "Mount Hood"],
-  correctAnswer: "Mount McKinley (Denali)",
+  options: ["Mount McKinley", "Mount Rainier", "Mount Elbert", "Mount Hood"],
+  correctAnswer: "Mount McKinley",
 },
 {
   question: "Which desert is the largest hot desert in the world?",
-  options: ["Gobi Desert", "Sahara Desert", "Karakum Desert", "Arabian Desert"],
+  options: ["Antarctica", "Sahara Desert", "Karakum Desert", "Arabian Desert"],
   correctAnswer: "Sahara Desert",
 },
 {
