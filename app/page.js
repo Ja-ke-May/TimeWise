@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import AudioButtons from "./components/AudioButtons";
@@ -12,6 +12,7 @@ import Start from './components/Start';
 import QuizTypeButtons from './components/QuizType';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedQuizType, setSelectedQuizType] = useState('GeneralKnowledge');
   const [containerBorder, setContainerBorder] = useState('border-pink-500/0'); 
   const [currentInstruction, setCurrentInstruction] = useState(1);
@@ -21,6 +22,21 @@ export default function Home() {
   const [startSeconds, setStartSeconds] = useState(22);
   const [HrColor, setHrColor] = useState('border-pink-500');
   const audioPlayerRef = useRef();
+
+  useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+    });
+      return () => clearTimeout(loadingTimeout);
+    }, []);
+
+    if (isLoading) {
+      return (
+        <div className='w-screen h-screen bg-black flex justify-center items-center'>
+          <img className='h-40 w-40 motion-safe:animate-pulse' src="images/TimeWiseLogo.png" alt="TimeWise Logo" />
+        </div>
+      );
+    }
 
   const handleQuizTypeChange = (newQuizType, newContainerBorder) => {
     setSelectedQuizType(newQuizType);
@@ -74,7 +90,6 @@ export default function Home() {
     <main className="bg-black font-mono flex flex-col items-center">
       <Navbar />
 
-      
       <h1 className="text-3xl md:text-5xl font-bold fixed text-white/60 text-center mt-5">TIMEWISE</h1>
       {currentInstruction === 1 && <QuizTypeButtons onQuizTypeChange={handleQuizTypeChange} />}
     {currentInstruction === 1 && <Welcome quizType={selectedQuizType} containerBorder={containerBorder} onNextClick={handleNextButtonClick} onWelcomeFinish={handleWelcomeFinish} />}

@@ -59,7 +59,7 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
       setTimeout(() => {
         setShowMinus(false);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-      }, 500);
+      }, 500);      
     }
   };  
 
@@ -130,11 +130,21 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
   return (
     <>
   {(questions[currentQuestionIndex] && totalTime) ? (
-    <div className={`relative mt-40 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
+    <div className={`relative mt-40 ml-5 mr-5 border-2 ${containerBorder}`}>
       <section id="quiz-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
-      <div id="green-plus" className={`text-green-500 text-3xl float-right mr-10 pb-1 ${showPlus ? 'visible' : 'invisible'}`}>+3</div>
-        <div id="red-minus" className={`text-red-500 text-3xl float-left ml-10 pb-1 ${showMinus ? 'visible' : 'invisible'}`}>-5</div>
-        <div
+      <div
+  id="green-plus"
+  className={`text-green-500 text-3xl float-right mr-10 pb-1 ${showPlus ? 'opacity-100' : 'opacity-0'}`}
+>
+  +3
+</div>
+<div
+  id="red-minus"
+  className={`text-red-500 text-3xl float-left ml-10 pb-1 ${showMinus ? 'opacity-100' : 'opacity-0'}`}
+>
+  -5
+</div>
+<div
         id="timer"
         className={`text-2xl flex items-center justify-center absolute inset-x-0 ${totalTime <= 5 ? 'text-red-500 brightness-125' : ''}`}
       >
@@ -155,7 +165,7 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
       </section>
       </div>
     ) : (
-      <div className={`relative mt-40 mb-20 border-2 ${containerBorder}`}>
+      <div className={`relative mt-60 mb-20 border-2 ${containerBorder}`}>
       <div className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
       <EndQuizContainer selectedQuizType={selectedQuizType} containerBorder={containerBorder} HrColor={HrColor} finalTime={totalTime} finalScore={finalCount} />
       <button id="end-next" className="bg-pink-500 text-white text-center px-3 py-2 rounded m-2" onClick={onPreviousClick}>

@@ -26,9 +26,10 @@ export default function RootLayout({ children }) {
         <body className={`${inter.className} bg-black`}>
           {/* Video Background */}
           <video id="video-background" autoPlay loop muted className="fixed top-0 left-0 w-full h-full object-cover">
-            <source src="4K_13.mp4" type="video/mp4" />
-            Unsupported video
-          </video>
+  <source src="4K_13.mp4" type="video/mp4" />
+  <source src="4K_13.webm" type="video/webm" />
+  Unsupported video
+</video>
           {children}
         </body>
       </html>
