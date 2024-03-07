@@ -7,7 +7,7 @@ const Instruction2 = ({ onPreviousClick, onNextClick, HrColor, containerBorder }
       <div id="green-plus1" className="text-green-500 text-3xl float-right mr-10 pb-1">+3</div>
       <div id="red-minus1" className="text-red-500 text-3xl float-left ml-10 pb-1">-5</div>
       <div className="text-2xl text-red-500 brightness-125 flex items-center justify-center absolute inset-x-0">
-        00:00
+        00
       </div>
       <br />
       <hr className={`m-3 ${HrColor}`} />

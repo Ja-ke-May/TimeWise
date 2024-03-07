@@ -51,7 +51,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Quidditch",
   },
   {
-    question: "Which TV series features a character named Walter White, a high school chemistry teacher turned methamphetamine manufacturer?",
+    question: "Which TV series features a character named Walter White?",
     options: ["Breaking Bad", "The Sopranos", "The Wire", "Mad Men"],
     correctAnswer: "Breaking Bad",
   },
@@ -66,7 +66,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Michael Jackson",
   },
   {
-    question: "In the film 'The Matrix,' what is the real name of the character played by Keanu Reeves?",
+    question: "In the film 'The Matrix,' what's the name of the character played by Keanu Reeves?",
     options: ["Trinity", "Neo", "Morpheus", "Agent Smith"],
     correctAnswer: "Neo",
   },
@@ -86,7 +86,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Sherlock Holmes",
   },
   {
-    question: "What is the name of the magical school bus driver in the children's book series and animated TV show 'The Magic School Bus'?",
+    question: "What is the name of the magical school bus driver in the animated TV show 'The Magic School Bus'?",
     options: ["Ms. Frizzle", "Mrs. Doubtfire", "Ms. Doubtwater", "Mrs. Frizzle"],
     correctAnswer: "Ms. Frizzle",
   },
@@ -121,19 +121,14 @@ export const popularCultureQuestions = [
     correctAnswer: "Robert Downey Jr.",
   },
   {
-    question: "What is the name of the fictional wizarding newspaper in the 'Harry Potter' series?",
-    options: ["The Daily Prophet", "The Quibbler", "The Wizarding World Times", "The Daily Bugle"],
-    correctAnswer: "The Daily Prophet",
-  },
-  {
-    question: "In the film 'The Matrix,' what is the real name of the character played by Keanu Reeves?",
+    question: "In the film 'The Matrix,' what's the name of the character played by Hugo Weaving?",
     options: ["Trinity", "Neo", "Morpheus", "Agent Smith"],
-    correctAnswer: "Neo",
+    correctAnswer: "Agent Smith",
   },
   {
-    question: "Which animated film features a character named Elsa and the song 'Let It Go'?",
+    question: "Which animated film features a character named Elsa and the song 'You're Welcome'?",
     options: ["Moana", "Frozen", "Tangled", "Cinderella"],
-    correctAnswer: "Frozen",
+    correctAnswer: "Moana",
   },
   {
     question: "Who is the creator of the animated TV series 'Rick and Morty'?",
@@ -164,5 +159,10 @@ export const popularCultureQuestions = [
     question: "Which classic novel begins with the famous line, 'Call me Ishmael'?",
     options: ["Moby-Dick", "Pride and Prejudice", "To Kill a Mockingbird", "The Great Gatsby"],
     correctAnswer: "Moby-Dick",
-  }
+  },
+  {
+    question: "Which British actor portrayed the character Sherlock Holmes in the TV series 'Sherlock'?",
+    options: ["Benedict Cumberbatch", "Martin Freeman", "Tom Hiddleston", "David Tennant"],
+    correctAnswer: "Benedict Cumberbatch",
+  },
 ];

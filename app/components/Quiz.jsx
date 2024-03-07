@@ -138,7 +138,7 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
         id="timer"
         className={`text-2xl flex items-center justify-center absolute inset-x-0 ${totalTime <= 5 ? 'text-red-500 brightness-125' : ''}`}
       >
-        {totalTime < 10 ? `00:0${totalTime}` : `00:${totalTime}`}
+        {totalTime < 10 ? `0${totalTime}` : `${totalTime}`}
       </div>
         <br />
         <hr className={`m-3 ${HrColor}`} />

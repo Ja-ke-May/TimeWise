@@ -45,9 +45,9 @@ export const  sportQuestions = [
     correctAnswer: "New Zealand",
   },
   {
-    question: "In golf, what is the term for completing a hole in one stroke under par?",
+    question: "In golf, what is the term for completing a hole in two stroke's under par?",
     options: ["Par", "Birdie", "Eagle", "Hole-in-One"],
-    correctAnswer: "Birdie",
+    correctAnswer: "Eagle",
   },{
     question: "Who is known as the 'Rocket' in the sport of snooker?",
     options: ["Ronnie O'Sullivan", "Mark Selby", "John Higgins", "Stephen Hendry"],
@@ -74,9 +74,9 @@ export const  sportQuestions = [
     correctAnswer: "United States",
   },
   {
-    question: "What is the term for a perfect score of 10 in gymnastics?",
-    options: ["Flawless", "Perfect Score", "Gold Medal", "Perfection"],
-    correctAnswer: "Perfect Score",
+    question: "In tennis, what is the term for tied score?",
+    options: ["Deuce", "Advantage", "Love", "Ace"],
+    correctAnswer: "Deuce",
   },
   {
     question: "Which tennis player is known as the 'King of Clay'?",
@@ -148,14 +148,9 @@ export const  sportQuestions = [
     correctAnswer: "Love",
   },
   {
-    question: "Who won the FIFA Ballon d'Or in 2020?",
-    options: ["Lionel Messi", "Cristiano Ronaldo", "Robert Lewandowski", "Neymar"],
-    correctAnswer: "Cancelled due to COVID-19",
-  },
-  {
-    question: "Which country has won the most medals in the history of the Summer Olympics?",
-    options: ["United States", "China", "Russia", "Great Britain"],
-    correctAnswer: "United States",
+    question: "Which country has won the most medals in the history of the Winter Olympics?",
+    options: ["United States", "Norway", "Russia", "Great Britain"],
+    correctAnswer: "Norway",
   },
   {
     question: "What is the term for a golf score of one stroke under par on a hole?",

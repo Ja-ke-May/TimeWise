@@ -10,7 +10,7 @@ const Instruction1 = ( { onPreviousClick, onNextClick, HrColor, startSeconds, co
     <div className={`relative mt-40 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
       <div id="instruction1-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
       <div className={`text-2xl flex items-center justify-center absolute inset-x-0 ${timerColorClass}`}>
-          00:{formattedStartSeconds}
+          {formattedStartSeconds}
         </div>
         <br />
         <hr className={`m-3 ${HrColor}`} />
