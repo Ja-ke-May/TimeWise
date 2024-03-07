@@ -71,7 +71,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Neo",
   },
   {
-    question: "Which animated film features a character named Elsa and the song 'Let It Go'?",
+    question: "Which animated film features a character named Elsa?",
     options: ["Moana", "Frozen", "Tangled", "Cinderella"],
     correctAnswer: "Frozen",
   },
@@ -126,7 +126,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Agent Smith",
   },
   {
-    question: "Which animated film features a character named Elsa and the song 'You're Welcome'?",
+    question: "Which animated film features the song 'You're Welcome'?",
     options: ["Moana", "Frozen", "Tangled", "Cinderella"],
     correctAnswer: "Moana",
   },
