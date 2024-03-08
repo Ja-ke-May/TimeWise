@@ -17,6 +17,7 @@ export default function Home() {
   const [containerBorder, setContainerBorder] = useState('border-pink-500/0'); 
   const [currentInstruction, setCurrentInstruction] = useState(1);
   const [isAudioOn, setIsAudioOn] = useState(true);
+  const [hasAudioPlayed, setHasAudioPlayed] = useState(false);
   const [showAudioButtons, setShowAudioButtons] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState('Normal');
   const [startSeconds, setStartSeconds] = useState(22);
@@ -61,11 +62,15 @@ export default function Home() {
   };
 
   const handleWelcomeFinish = (difficulty, seconds, HrColor) => {
-    setShowAudioButtons(true);
-    setIsAudioOn(true);
+    if (!hasAudioPlayed) {
+      setShowAudioButtons(true);
+      setIsAudioOn(true);
 
-    const audioPlayer = audioPlayerRef.current;
-    audioPlayer.play();
+      const audioPlayer = audioPlayerRef.current;
+      audioPlayer.play();
+
+      setHasAudioPlayed(true);
+    }
 
     handleNextButtonClick();
 
