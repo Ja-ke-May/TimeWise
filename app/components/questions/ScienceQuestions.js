@@ -150,9 +150,9 @@ export const scienceQuestions = [
       correctAnswer: "Gravity",
     },
     {
-      question: "What is the chemical formula for methane?",
+      question: "What is the chemical formula for oxygen?",
       options: ["CO2", "CH4", "H2O", "O2"],
-      correctAnswer: "CH4",
+      correctAnswer: "O2",
     },
     {
       question: "Which element is essential for human bone formation?",

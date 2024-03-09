@@ -66,9 +66,9 @@ export const historyQuestions = [
     correctAnswer: "1789",
   },
   {
-    question: "Who was the first woman to fly solo across the Atlantic Ocean?",
-    options: ["Amelia Earhart", "Bessie Coleman", "Harriet Quimby", "Jacqueline Cochran"],
-    correctAnswer: "Amelia Earhart",
+    question: "Who was the first woman to receive a Ph.D. in computer science and make significant contributions to the development of computer programming?",
+    options: ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton", "Barbara Liskov"],
+    correctAnswer: "Barbara Liskov",
   },
   {
     question: "What event led to the start of the Korean War in 1950?",

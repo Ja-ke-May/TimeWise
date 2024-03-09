@@ -11,7 +11,7 @@ export const popularCultureQuestions = [
     correctAnswer: "The Lion King",
   },
   {
-    question: "What is the name of the fictional wizarding school in the 'Harry Potter' series?",
+    question: "What is the name of the wizarding school in the 'Harry Potter' series?",
     options: ["Hogwarts School of Witchcraft and Wizardry", "Durmstrang Institute", "Beauxbatons Academy of Magic", "Ilvermorny School of Witchcraft and Wizardry"],
     correctAnswer: "Hogwarts School of Witchcraft and Wizardry",
   },
@@ -21,7 +21,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Leonardo DiCaprio",
   },
   {
-    question: "What is the name of the fictional city in the TV series 'Friends'?",
+    question: "What is the name of the city in the TV series 'Friends'?",
     options: ["New York City", "Metropolis", "Central City", "Pawnee"],
     correctAnswer: "New York City",
   },
@@ -46,7 +46,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Captain America",
   },
   {
-    question: "What is the name of the fictional wizarding sport in the 'Harry Potter' series?",
+    question: "What is the name of the wizarding sport in the 'Harry Potter' series?",
     options: ["Quidditch", "Blitzball", "Broomstick Polo", "Wizard Chess"],
     correctAnswer: "Quidditch",
   },
@@ -56,7 +56,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Breaking Bad",
   },
   {
-    question: "What is the name of the fictional wizarding newspaper in the 'Harry Potter' series?",
+    question: "What is the name of the wizarding newspaper in the 'Harry Potter' series?",
     options: ["The Daily Prophet", "The Quibbler", "The Wizarding World Times", "The Daily Bugle"],
     correctAnswer: "The Daily Prophet",
   },
@@ -81,7 +81,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Matt Groening",
   },
   {
-    question: "Which fictional detective is known for living at 221B Baker Street?",
+    question: "Which detective is known for living at 221B Baker Street?",
     options: ["Hercule Poirot", "Sherlock Holmes", "Miss Marple", "Columbo"],
     correctAnswer: "Sherlock Holmes",
   },
@@ -106,7 +106,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Casablanca",
   },
 {
-    question: "What is the name of the fictional spy agency in the 'James Bond' film series?",
+    question: "What is the name of the spy agency in the 'James Bond' film series?",
     options: ["MI6", "CIA", "KGB", "SIS"],
     correctAnswer: "MI6",
 },
@@ -141,7 +141,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Mark Ruffalo",
   },
   {
-    question: "In the TV series 'Stranger Things,' what is the name of the fictional town where the events take place?",
+    question: "In the TV series 'Stranger Things,' what is the name of the town where the events take place?",
     options: ["Hawkins", "Springfield", "Windsor", "Greendale"],
     correctAnswer: "Hawkins",
   },
@@ -151,7 +151,7 @@ export const popularCultureQuestions = [
     correctAnswer: "Jimi Hendrix",
   },
   {
-    question: "In J.K. Rowling's 'Harry Potter' series, what is the name of the magical creature that can turn invisible and is often used as a mode of transportation?",
+    question: "In J.K. Rowling's 'Harry Potter' series, what is the name of the invisible magical creature that is used as a mode of transportation?",
     options: ["Thestral", "Hippogriff", "Blast-Ended Skrewt", "Flobberworm"],
     correctAnswer: "Thestral",
   },
