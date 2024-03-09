@@ -61,6 +61,12 @@ export default function Home() {
     }
   };
 
+  const backToStart = () => {
+    setCurrentInstruction(1);
+    setContainerBorder('border-pink-500/0');
+    setSelectedQuizType('GeneralKnowledge');
+  };
+
   const handleWelcomeFinish = (difficulty, seconds, HrColor) => {
     if (!hasAudioPlayed) {
       setShowAudioButtons(true);
@@ -101,7 +107,7 @@ export default function Home() {
     {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
     {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
-    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} />}
+    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} backToStart={backToStart} />}
 
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
       <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
