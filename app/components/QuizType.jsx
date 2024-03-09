@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from 'react'; 
+import React, { useState } from 'react'; 
 
 const QuizType = ({ onQuizTypeChange }) => {
 
     const quizTypeSettings = {
       GeneralKnowledge: {
-        questions: 'questions/GeneralKnowledgeQuestions',
+       
         containerBorder: 'border-pink-500/0 rounded',
         bgColor: 'bg-black/10',
         textColor: 'text-pink-500',
@@ -14,7 +14,6 @@ const QuizType = ({ onQuizTypeChange }) => {
         newQuestionDay: 'Monday',
       },
       Music: {
-        questions: 'questions/MusicQuestions',
         containerBorder: 'border-orange-500/50 rounded',
         bgColor: 'bg-black/10',
         textColor: 'text-orange-500',
@@ -22,7 +21,6 @@ const QuizType = ({ onQuizTypeChange }) => {
         newQuestionDay: 'Tuesday',
       },
       Geography: {
-        questions: 'questions/GeographyQuestions',
         containerBorder: 'border-green-500/50 rounded',
         bgColor: 'bg-black/20',
         textColor: 'text-green-500',
@@ -30,7 +28,6 @@ const QuizType = ({ onQuizTypeChange }) => {
         newQuestionDay: 'Wednesday',
       },
       Sport: {
-        questions: 'questions/SportQuestions',
         containerBorder: 'border-blue-500/50 rounded',
         bgColor: 'bg-black/10',
         textColor: 'text-blue-500',
@@ -38,7 +35,6 @@ const QuizType = ({ onQuizTypeChange }) => {
         newQuestionDay: 'Thursday',
       },
       History: {
-        questions: 'questions/HistoryQuestions',
         containerBorder: 'border-purple-500/50 rounded',
         bgColor: 'bg-black/30',
         textColor: 'text-purple-500',
@@ -46,7 +42,6 @@ const QuizType = ({ onQuizTypeChange }) => {
         newQuestionDay: 'Friday',
       },
       PopularCulture: {
-        questions: 'questions/PopularCultureQuestions',
         containerBorder: 'border-yellow-500/50 rounded',
         bgColor: 'bg-black/40',
         textColor: 'text-yellow-500',
@@ -54,7 +49,6 @@ const QuizType = ({ onQuizTypeChange }) => {
         newQuestionDay: 'Saturday',
       },
       Science: {
-        questions: 'questions/ScienceQuestions',
         containerBorder: 'border-teal-500/50 rounded',
         bgColor: 'bg-black/50',
         textColor: 'text-teal-500',
@@ -64,16 +58,7 @@ const QuizType = ({ onQuizTypeChange }) => {
     };
   
     const [selectedQuizType, setSelectedQuizType] = useState('GeneralKnowledge');
-    const [questions, setQuestions] = useState([]);
     const { bgColor, textColor, borderColor } = quizTypeSettings[selectedQuizType];
-    
-
-    useEffect(() => {
-      // Load questions when the selected quiz type changes
-      import(`./${quizTypeSettings[selectedQuizType].questions}`).then((module) => {
-        setQuestions(module.default); 
-      });
-    }, [selectedQuizType]);
 
     const handleQuizTypeClick = (quizType) => {
         setSelectedQuizType(quizType);
