@@ -10,18 +10,20 @@ import Instruction1 from "./components/Instruction1";
 import Instruction2 from './components/Instruction2';
 import Start from './components/Start';
 import QuizTypeButtons from './components/QuizType';
+import Leaderboard from './components/Leaderboard';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedQuizType, setSelectedQuizType] = useState('GeneralKnowledge');
-  const [containerBorder, setContainerBorder] = useState('border-pink-500/0'); 
+  const [selectedQuizType, setSelectedQuizType] = useState('');
+  const [quizStartDate, setQuizStartDate] = useState('');
+  const [containerBorder, setContainerBorder] = useState(''); 
   const [currentInstruction, setCurrentInstruction] = useState(1);
   const [isAudioOn, setIsAudioOn] = useState(true);
   const [hasAudioPlayed, setHasAudioPlayed] = useState(false);
   const [showAudioButtons, setShowAudioButtons] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState('Normal');
-  const [startSeconds, setStartSeconds] = useState(22);
-  const [HrColor, setHrColor] = useState('border-pink-500');
+  const [startSeconds, setStartSeconds] = useState('');
+  const [HrColor, setHrColor] = useState('');
   const audioPlayerRef = useRef();
 
   useEffect(() => {
@@ -39,9 +41,14 @@ export default function Home() {
       );
     }
 
-  const handleQuizTypeChange = (newQuizType, newContainerBorder) => {
+  const handleQuizTypeChange = (newQuizType, newContainerBorder, newQuizStartDate, ) => {
     setSelectedQuizType(newQuizType);
     setContainerBorder(newContainerBorder);
+    setQuizStartDate(newQuizStartDate);
+
+    if (newQuizStartDate) {
+      setQuizStartDate(newQuizStartDate);
+    }
   };
 
   const handleQuestionsLoad = (loadedQuestions) => {
@@ -54,20 +61,13 @@ export default function Home() {
 
   const handlePreviousClick = () => {
     setCurrentInstruction(currentInstruction - 1);
-
-    if (currentInstruction === 2) {
-      setContainerBorder('border-pink-500/0'); 
-      setSelectedQuizType('GeneralKnowledge');
-    }
   };
 
   const backToStart = () => {
     setCurrentInstruction(1);
-    setContainerBorder('border-pink-500/0');
-    setSelectedQuizType('GeneralKnowledge');
   };
 
-  const handleWelcomeFinish = (difficulty, seconds, HrColor) => {
+  const handleWelcomeFinish = (difficulty, seconds, HrColor, newQuizStartDate ) => {
     if (!hasAudioPlayed) {
       setShowAudioButtons(true);
       setIsAudioOn(true);
@@ -83,6 +83,10 @@ export default function Home() {
     setSelectedDifficulty(difficulty);
     setStartSeconds(seconds);
     setHrColor(HrColor);
+    
+    if (newQuizStartDate) {
+      setQuizStartDate(newQuizStartDate);
+    }
   };
 
   const toggleAudio = () => {
@@ -107,7 +111,10 @@ export default function Home() {
     {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
     {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
-    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} backToStart={backToStart} />}
+    {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} backToStart={backToStart} quizStartDate={quizStartDate} />}
+
+<Leaderboard containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} selectedQuizType={selectedQuizType}
+        quizStartDate={quizStartDate} />
 
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
       <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
