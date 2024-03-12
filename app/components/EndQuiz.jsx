@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LeaderboardNameEntry from './LeaderboardNameEntry';
 
-const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType, selectedDifficulty }) => {
+const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType, selectedDifficulty, quizStartDate }) => {
+
   const isOutOfTime = finalTime === 0;
   let selectedDifficultyPoints = 0;
   let difficultyTextColor = '';
@@ -32,7 +34,7 @@ const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType, se
         {finalScore === 33 && (
   <p className={`text-xl ${difficultyTextColor}`}>+ {selectedDifficultyPoints}</p>
 )}
-        <p className={`text-2xl m-5`}>Total Score: {totalScore}</p>
+        <p className={`text-2xl m-5 p-4 rounded border-2 border-pink-500`}>Total Score: {totalScore}</p>
       </>
       ) : (
   <>
@@ -49,10 +51,13 @@ const EndQuizContainer = ({ finalScore, finalTime, HrColor, selectedQuizType, se
   <p className={`text-xl ${difficultyTextColor}`}>+ {selectedDifficultyPoints}</p>
 )}
 <p id="secs" className="m-2 text-2xl mb-5">Time: {finalTime} seconds</p>
-            <p className={`text-2xl mb-5`}>Total Score: {totalScore}</p>
+            <p className={`text-2xl mb-5 p-4 rounded border-2 border-pink-500`}>Total Score: {totalScore}</p>
           </div>
         </>
       )}
+      <hr className={`m-3 ${HrColor}`} />
+      <LeaderboardNameEntry totalScore={totalScore} selectedQuizType={selectedQuizType} quizStartDate={quizStartDate} />
+      <hr className={`m-3 ${HrColor}`} />
     </section>
   );
 };

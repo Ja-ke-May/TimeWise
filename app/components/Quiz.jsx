@@ -6,9 +6,9 @@ import { geographyQuestions } from './questions/GeographyQuestions';
 import { historyQuestions } from './questions/HistoryQuestions';
 import { popularCultureQuestions } from './questions/PopularCultureQuestions';
 import { scienceQuestions } from './questions/ScienceQuestions';
-import EndQuizContainer from './EndQuizContainer';  
+import EndQuizContainer from './EndQuiz';  
 
-const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColor, onPreviousClick, selectedDifficulty, backToStart, }) => {
+const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColor, onPreviousClick, selectedDifficulty, backToStart, quizStartDate }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionContent, setQuestionContent] = useState('');
@@ -167,7 +167,7 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
     ) : (
       <div className={`relative mt-60 mb-20 border-2 ${containerBorder}`}>
       <div className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
-      <EndQuizContainer selectedQuizType={selectedQuizType} selectedDifficulty={selectedDifficulty} containerBorder={containerBorder} HrColor={HrColor} finalTime={totalTime} finalScore={finalCount} />
+      <EndQuizContainer selectedQuizType={selectedQuizType} selectedDifficulty={selectedDifficulty} containerBorder={containerBorder} HrColor={HrColor} finalTime={totalTime} finalScore={finalCount}  quizStartDate={quizStartDate} />
       <div className='flex flex-col'><button id="end-next" className="bg-pink-500 text-white text-center px-3 py-2 rounded m-2" onClick={onPreviousClick}>
           Back to Start
         </button>
