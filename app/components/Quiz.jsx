@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { generalKnowledgeQuestions } from './questions/GeneralKnowledgeQuestions';
-import { musicQuestions } from './questions/MusicQuestions';
-import { sportQuestions } from './questions/SportQuestions';
-import { geographyQuestions } from './questions/GeographyQuestions';
-import { historyQuestions } from './questions/HistoryQuestions';
-import { popularCultureQuestions } from './questions/PopularCultureQuestions';
-import { scienceQuestions } from './questions/ScienceQuestions';
 import EndQuizContainer from './EndQuiz';  
+import { getQuestionData } from '@/apiClient';
 
 const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColor, onPreviousClick, selectedDifficulty, backToStart, quizStartDate }) => {
   const [questions, setQuestions] = useState([]);
@@ -23,7 +17,6 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
     let timerInterval;
   
     const updateTimer = () => {
-
       if (questions[currentQuestionIndex]) {
         setTotalTime((prevTime) => prevTime - 1);
       }
@@ -72,43 +65,19 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
   };
 
   useEffect(() => {
-    let selectedQuestions = [];
-
-    if (
-      selectedQuizType &&
-      (selectedQuizType === 'GeneralKnowledge' ||
-        selectedQuizType === 'Music' ||
-        selectedQuizType === 'Sport' ||
-        selectedQuizType === 'Geography' ||
-        selectedQuizType === 'History' ||
-        selectedQuizType === 'PopularCulture' ||
-        selectedQuizType === 'Science')
-    ) {
-      if (selectedQuizType === 'GeneralKnowledge') {
-        selectedQuestions = generalKnowledgeQuestions;
-      } else if (selectedQuizType === 'Music') {
-        selectedQuestions = musicQuestions;
-      } else if (selectedQuizType === 'Sport') {
-        selectedQuestions = sportQuestions;
-      } else if (selectedQuizType === 'Geography') {
-        selectedQuestions = geographyQuestions;
-      } else if (selectedQuizType === 'History') {
-        selectedQuestions = historyQuestions;
-      } else if (selectedQuizType === 'PopularCulture') {
-        selectedQuestions = popularCultureQuestions;
-      } else if (selectedQuizType === 'Science') {
-        selectedQuestions = scienceQuestions;
-      }      
-
-      if (selectedQuestions.length > 0) {
-        setQuestions(shuffleArray([...selectedQuestions]));
-      } else {
-        console.error('No questions found for the selected quiz type.');
+    const fetchQuestions = async () => {
+      try {
+        const questionsData = await getQuestionData(selectedQuizType, quizStartDate);
+        setQuestions(shuffleArray([...questionsData]));
+      } catch (error) {
+        console.error('Error fetching questions:', error);
       }
-    } else {
-      console.error('Invalid or undefined quiz type.');
+    };
+  
+    if (selectedQuizType && quizStartDate) {
+      fetchQuestions();
     }
-  }, [selectedQuizType]);
+  }, [selectedQuizType, quizStartDate]);  
 
   useEffect(() => {
     if (questions.length > 0) {
@@ -128,19 +97,19 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
   };
 
   return (
-    <>
+        <>
   {(questions[currentQuestionIndex] && totalTime) ? (
     <div className={`relative mt-40 ml-5 mr-5 border-2 ${containerBorder}`}>
       <section id="quiz-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
       <div
   id="green-plus"
-  className={`text-green-500 text-3xl float-right mr-10 pb-1 ${showPlus ? 'opacity-100' : 'opacity-0'}`}
+  className={`text-green-500 text-3xl float-right mr-5 pb-1 ${showPlus ? 'opacity-100' : 'opacity-0'}`}
 >
   +3
 </div>
 <div
   id="red-minus"
-  className={`text-red-500 text-3xl float-left ml-10 pb-1 ${showMinus ? 'opacity-100' : 'opacity-0'}`}
+  className={`text-red-500 text-3xl float-left ml-5 pb-1 ${showMinus ? 'opacity-100' : 'opacity-0'}`}
 >
   -5
 </div>
@@ -177,8 +146,8 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
         </div>
         </div>
         </div>
+        )}
+      </>
     )}
-  </>
-);
-    }
+    
 export default QuizComponent;

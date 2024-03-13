@@ -33,7 +33,7 @@ useEffect(() => {
   }, [userName, totalScore, leaderboardData, selectedQuizType, quizStartDate]);
 
   const handleInputChange = (e) => {
-    const inputText = e.target.value.replace(/[^A-Za-z0-9 ]/g, '').slice(0, 22);
+    const inputText = e.target.value.replace(/[^A-Za-z0-9 ]/g, '').slice(0, 18);
     setUserName(inputText);
   };  
 
@@ -84,7 +84,7 @@ useEffect(() => {
           onKeyPress={handleKeyPress}
           className="m-2 p-2 rounded border-2 border-pink-500 text-center text-black text-xl"
           placeholder='Name for Leaderboard'
-          maxLength={22}
+          maxLength={18}
           pattern="[A-Za-z0-9 ]*"
         />
       </label>

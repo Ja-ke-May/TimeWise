@@ -16,6 +16,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedQuizType, setSelectedQuizType] = useState('');
   const [quizStartDate, setQuizStartDate] = useState('');
+  const [leaderboardStartDate, setLeaderboardStartDate] = useState('');
   const [containerBorder, setContainerBorder] = useState(''); 
   const [currentInstruction, setCurrentInstruction] = useState(1);
   const [isAudioOn, setIsAudioOn] = useState(true);
@@ -45,6 +46,7 @@ export default function Home() {
     setSelectedQuizType(newQuizType);
     setContainerBorder(newContainerBorder);
     setQuizStartDate(newQuizStartDate);
+    setLeaderboardStartDate(newQuizStartDate);
 
     if (newQuizStartDate) {
       setQuizStartDate(newQuizStartDate);
@@ -114,7 +116,7 @@ export default function Home() {
     {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} backToStart={backToStart} quizStartDate={quizStartDate} />}
 
 <Leaderboard containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} selectedQuizType={selectedQuizType}
-        quizStartDate={quizStartDate} />
+         leaderboardStartDate={leaderboardStartDate} setLeaderboardStartDate={setLeaderboardStartDate} />
 
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
       <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
