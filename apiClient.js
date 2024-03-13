@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001/";
+const baseURL = "https://timewise-backend.onrender.com";
 
 const createApiClient = () => {
   return axios.create({
