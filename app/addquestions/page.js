@@ -88,7 +88,7 @@ export default function AddQuestion() {
   };
 
   return (
-    <div className='fixed flex flex-col w-full justify-center items-center'>
+    <div className='relative flex flex-col w-full justify-center items-center'>
     <div className={`mt-40 mb-20 border-2 border-pink-500 bg-black/50 p-5`}>
     <div className='text-pink-500'>
       <h1 className='text-2xl font-bold mb-4'>Add Question</h1>
