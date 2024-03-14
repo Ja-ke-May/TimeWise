@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from 'react';
-import { postQuestionData } from "@/apiClient";
+import { useState, useEffect } from 'react';
+import { postQuestionData, getQuestionData } from "@/apiClient";
 
 const correctPassword = process.env.NEXT_PUBLIC_PASSKEY;
 
@@ -23,6 +23,22 @@ export default function AddQuestion() {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+  const [questionCount, setQuestionCount] = useState(0);
+
+  useEffect(() => {
+    async function fetchQuestionCount() {
+      try {
+        if (quizType && quizDate) {
+          const questionsData = await getQuestionData(quizType, quizDate);
+          setQuestionCount(questionsData.length);
+        }
+      } catch (error) {
+        console.error('Error fetching question count:', error);
+      }
+    }
+
+    fetchQuestionCount();
+  }, [quizType, quizDate]);
 
   const handleSubmitPassword = (event) => {
     event.preventDefault();
@@ -65,6 +81,12 @@ export default function AddQuestion() {
 
   const handleSubmit = async event => {
     event.preventDefault();
+
+    if (!options.includes(correctAnswer)) {
+      alert('Correct answer must match one of the options.');
+      return;
+    }
+    
     const data = {
       quizType,
       quizDate,
@@ -82,6 +104,7 @@ export default function AddQuestion() {
       setQuestion('');
       setOptions(['', '', '', '']);
       setCorrectAnswer('');
+      setQuestionCount('');
     } catch (error) {
       alert('Error adding question:', error);
     }
@@ -119,6 +142,7 @@ export default function AddQuestion() {
             className='input text-black'
           />
         </div>
+        <p>{questionCount}</p>
         <div>
           <label htmlFor="question" className='block mb-2'>Question:</label>
           <input
