@@ -113,7 +113,7 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
     <>
     {countdown > 0 ? ( 
       <div className={`relative flex justify-center items-center mt-40 ml-5 mr-5 bg-black/50 border-2 ${containerBorder} p-10 rounded`}>
-        <div className="countdown">{countdown}</div><img className='h-40 w-40 motion-safe:animate-pulse' src="images/TimeWiseLogo.png" alt="TimeWise Logo" />
+        <div className="countdown hidden">{countdown}</div><img className='h-40 w-40 motion-safe:animate-pulse' src="images/TimeWiseLogo.png" alt="TimeWise Logo" />
         </div>
     ) : (questions[currentQuestionIndex] && totalTime) ? (
     <div className={`relative mt-40 ml-5 mr-5 border-2 ${containerBorder}`}>
