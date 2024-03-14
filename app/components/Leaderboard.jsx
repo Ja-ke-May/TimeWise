@@ -73,7 +73,7 @@ const Leaderboard = ({ containerBorder, selectedQuizType, leaderboardStartDate, 
             </tr>
           </thead>
           <tbody>
-  {sortedLeaderboardData.slice(0, 1000).map((entry, index) => (
+  {sortedLeaderboardData.slice(0, 999).map((entry, index) => (
     <tr key={index + 1}>
       <td className="border border-pink-500">{index + 1}</td>
       <td className="border border-pink-500 p-2 text-xl">{entry.userName}</td>
