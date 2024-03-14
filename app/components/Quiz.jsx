@@ -12,6 +12,7 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
   const [showMinus, setShowMinus] = useState(false);
   const [totalTime, setTotalTime] = useState(startSeconds);
   const [finalCount, setFinalCount] = useState(0);
+  const [countdown, setCountdown] = useState('1');
 
   useEffect(() => {
     let timerInterval;
@@ -30,6 +31,18 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
       clearInterval(timerInterval);
     };
   }, [totalTime, questions, currentQuestionIndex]);
+
+  useEffect(() => {
+    const countdownInterval = setInterval(() => {
+      setCountdown((prevCount) => prevCount - 1);
+    }, 1000);
+
+    if (countdown === 0) {
+      clearInterval(countdownInterval);
+    }
+
+    return () => clearInterval(countdownInterval);
+  }, [countdown]);
 
   const checkAnswer = (selectedAnswer) => {
     const correctAnswer = questions[currentQuestionIndex].correctAnswer;
@@ -97,8 +110,10 @@ const QuizComponent = ({ selectedQuizType, startSeconds, containerBorder, HrColo
   };
 
   return (
-        <>
-  {(questions[currentQuestionIndex] && totalTime) ? (
+    <>
+    {countdown > 0 ? ( 
+      <div className="countdown">{countdown}</div>
+    ) : (questions[currentQuestionIndex] && totalTime) ? (
     <div className={`relative mt-40 ml-5 mr-5 border-2 ${containerBorder}`}>
       <section id="quiz-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
       <div
