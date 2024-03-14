@@ -114,7 +114,7 @@ const QuizType = ({ onQuizTypeChange }) => {
               key={quizType}
               onClick={() => handleQuizTypeClick(quizType)}
               className={`${
-                selectedQuizType === quizType ? `${bgColor} ${textColor} ${borderColor}` : 'bg-black/50 text-gray-500/30 border-gray-500/20'
+                selectedQuizType === quizType ? `${bgColor} ${textColor} ${borderColor}` : 'bg-black/50 text-white/50 border-gray-500/20'
               } text-center px-3 py-2 rounded border-2`}
               aria-selected={selectedQuizType === quizType}
             >
