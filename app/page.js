@@ -28,6 +28,23 @@ export default function Home() {
   const audioPlayerRef = useRef();
 
   useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-V1R4EPJ038';
+    script.async = true;
+    document.body.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-V1R4EPJ038');
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
     });
