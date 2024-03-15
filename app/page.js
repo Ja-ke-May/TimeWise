@@ -136,7 +136,7 @@ export default function Home() {
          leaderboardStartDate={leaderboardStartDate} setLeaderboardStartDate={setLeaderboardStartDate} />
 
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
-      <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" />
+      <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" loop />
       
       <Footer />
     </main>
