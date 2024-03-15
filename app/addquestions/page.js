@@ -52,7 +52,7 @@ export default function AddQuestion() {
   if (!isPasswordCorrect) {
     return (
       <form onSubmit={handleSubmitPassword} className='relative'>
-        <label htmlFor="password">Enter Password:</label>
+        <label htmlFor="password"></label>
         <input
           type="password"
           id="password"
@@ -60,7 +60,7 @@ export default function AddQuestion() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit"></button>
       </form>
     );
   }
