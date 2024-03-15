@@ -60,7 +60,7 @@ const Welcome = ({ onWelcomeFinish, quizType, containerBorder }) => {
             onClick={() => handleDifficultyClick('Normal')}
             className={`${
               selectedDifficulty === 'Normal'
-                ? 'bg-black/100 text-pink-500 border-pink-500'
+                ? 'bg-black/10 text-pink-500 border-pink-500'
                 : 'bg-black/50 text-pink-500/30 border-pink-500/20'
             } text-center px-3 py-2 rounded border-2`}
           >
