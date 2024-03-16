@@ -44,9 +44,13 @@ useEffect(() => {
   };
 
   const handleEnterClick = async () => {
+    const currentDate = new Date(); 
+  const formattedDate = currentDate.toISOString().split('T')[0];
+
     const leaderboardData = {
       quizType: selectedQuizType,
       quizDate: quizStartDate,
+      dateQuizTaken: formattedDate,
       userName: userName,
       totalScore: totalScore,
     };
