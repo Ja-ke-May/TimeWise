@@ -13,6 +13,11 @@ export const postLeaderboardData = (data) => {
   return apiClient.post('/leaderboard', data);
 };
 
+export const getAllLeaderboardData = (data) => {
+  const apiClient = createApiClient();
+  return apiClient.get('/leaderboard', data);
+};
+
 export const getLeaderboardData = (quizType, quizDate) => {
   const apiClient = createApiClient();
   const params = {

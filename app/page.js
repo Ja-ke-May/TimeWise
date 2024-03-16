@@ -17,6 +17,7 @@ export default function Home() {
   const [selectedQuizType, setSelectedQuizType] = useState('');
   const [quizStartDate, setQuizStartDate] = useState('');
   const [leaderboardStartDate, setLeaderboardStartDate] = useState('');
+  const [leaderboardSelectedQuizType, setLeaderboardSelectedQuizType] = useState('');
   const [containerBorder, setContainerBorder] = useState(''); 
   const [currentInstruction, setCurrentInstruction] = useState(1);
   const [isAudioOn, setIsAudioOn] = useState(true);
@@ -64,6 +65,7 @@ export default function Home() {
     setContainerBorder(newContainerBorder);
     setQuizStartDate(newQuizStartDate);
     setLeaderboardStartDate(newQuizStartDate);
+    setLeaderboardSelectedQuizType(newQuizType);
 
     if (newQuizStartDate) {
       setQuizStartDate(newQuizStartDate);
@@ -132,7 +134,7 @@ export default function Home() {
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
     {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} backToStart={backToStart} quizStartDate={quizStartDate} />}
 
-<Leaderboard containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} selectedQuizType={selectedQuizType}
+<Leaderboard containerBorder={containerBorder} HrColor={HrColor} leaderboardSelectedQuizType={leaderboardSelectedQuizType} setLeaderboardSelectedQuizType={setLeaderboardSelectedQuizType}
          leaderboardStartDate={leaderboardStartDate} setLeaderboardStartDate={setLeaderboardStartDate} />
 
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
