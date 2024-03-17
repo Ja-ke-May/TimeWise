@@ -13,10 +13,10 @@ export const postLeaderboardData = (data) => {
   return apiClient.post('/leaderboard', data);
 };
 
-export const getLeaderboardData = async (leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate) => {
+export const getLeaderboardData = (leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate) => {
   try {
     const apiClient = createApiClient();
-    const response = await apiClient.get('/leaderboard', {
+    const response = apiClient.get('/leaderboard', {
       params: {
         quizType: leaderboardSelectedQuizType,
         quizDate: leaderboardStartDate,

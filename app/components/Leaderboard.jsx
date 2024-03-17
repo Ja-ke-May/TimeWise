@@ -20,8 +20,9 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
               } else if (viewMode === 'All Time') {
                   response = await getLeaderboardData(leaderboardSelectedQuizType);
               }
+              if (response) {
               setLeaderboardData(response.data);
-
+              }
           } catch (error) {
               console.error('Error fetching leaderboard data:', error);
           }
