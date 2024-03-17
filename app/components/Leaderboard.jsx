@@ -9,49 +9,29 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
     const [dailyLeaderboardDate, setDailyLeaderboardDate] = useState('');
 
     useEffect(() => {
-      const fetchLeaderboard = async () => {
-        try {
-          let response;
+     
+      const fetchLeaderboardData = async () => {
+          try {
+              let response;
+              if (viewMode === 'Daily') {
+                  response = await getLeaderboardData(leaderboardSelectedQuizType, dailyLeaderboardDate, );
+              } else if (viewMode === 'Weekly') {
+                  response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate);
+              } else if (viewMode === 'All Time') {
+                  response = await getLeaderboardData(leaderboardSelectedQuizType);
+              }
+              setLeaderboardData(response.data);
 
-          let params;
-          if (viewMode === 'Daily') {
-            params = {
-              quizType: leaderboardSelectedQuizType,
-              dateQuizTaken: dailyLeaderboardDate,
-            };
-          } else if (viewMode === 'Weekly') {
-            params = {
-              quizType: leaderboardSelectedQuizType,
-              quizDate: leaderboardStartDate, 
-            };
-          } else if (viewMode === 'All Time') {
-            params = {
-              quizType: leaderboardSelectedQuizType,
-            };
+          } catch (error) {
+              console.error('Error fetching leaderboard data:', error);
           }
-    
-          if (params) {
-            response = await getLeaderboardData(params.quizType, params.quizDate, params.dateQuizTaken);
-            setLeaderboardData(response.data);
-          }
-        } catch (error) {
-          console.error('Error fetching leaderboard data:', error);
-        }
       };
-    
-      fetchLeaderboard();
-    
-      const intervalId = setInterval(fetchLeaderboard, 2000);
-    
-      return () => clearInterval(intervalId);
-    }, [leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate, viewMode]);
-    
 
-  useEffect(() => {
-    const sortedLeaderboardData = [...leaderboardData].sort((a, b) => b.totalScore - a.totalScore);
-    setSortedLeaderboardData(sortedLeaderboardData);
-}, [leaderboardData, viewMode]);
+      const intervalId = setInterval(fetchLeaderboardData, 2000); 
 
+        return () => clearInterval(intervalId);
+
+  }, [leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate, viewMode]);
 
     useEffect(() => {
       const quizTypeBorders = {
@@ -72,6 +52,13 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
     const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${String(currentDate.getFullYear()).slice(-2)}`;
     setDailyLeaderboardDate(formattedDate);
 }, []);
+
+useEffect(() => {
+  if (Array.isArray(leaderboardData) && leaderboardData.length > 0) {
+      const sortedData = [...leaderboardData].sort((a, b) => b.totalScore - a.totalScore);
+      setSortedLeaderboardData(sortedData);
+  }
+}, [leaderboardData, viewMode]);
 
 
   const handleWeeklyDateChange = (direction) => {
@@ -222,7 +209,6 @@ const handleDailyDateChange = (direction) => {
   
     setLeaderboardSelectedQuizType(nextQuizType);
     setLeaderboardStartDate(formattedStartDate);
-    setDailyLeaderboardDate(formattedStartDate);
   };
   
   return (
