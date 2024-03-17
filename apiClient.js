@@ -13,19 +13,19 @@ export const postLeaderboardData = (data) => {
   return apiClient.post('/leaderboard', data);
 };
 
-export const getLeaderboardData = (leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate) => {
+export const getLeaderboardData = async (quizType, quizDate, dailyLeaderboardDate) => {
   try {
     const apiClient = createApiClient();
-    const response = apiClient.get('/leaderboard', {
+    const response = await apiClient.get('/leaderboard', {
       params: {
-        quizType: leaderboardSelectedQuizType,
-        quizDate: leaderboardStartDate,
-        dateQuizTaken: dailyLeaderboardDate,
+        quizType: quizType,
+        quizDate: quizDate,
+        dailyLeaderboardDate: dailyLeaderboardDate,
       },
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching question data:', error);
+    console.error('Error fetching leaderboard data:', error);
     throw error;
   }
 };
