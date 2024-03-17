@@ -6,14 +6,14 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
     const [sortedLeaderboardData, setSortedLeaderboardData] = useState([]);
     const [viewMode, setViewMode] = useState('Weekly');
     const [dynamicBorder, setDynamicBorder] = useState('');
-    const [dailyLeaderboardDate, setDailyLeaderboardDate] = useState('');
+    const [dateQuizTaken, setdateQuizTaken] = useState('');
 
     useEffect(() => {
       const fetchLeaderboardData = async () => {
         try {
             let response;
             if (viewMode === 'Daily') {
-                response = await getLeaderboardData(leaderboardSelectedQuizType, dailyLeaderboardDate);
+                response = await getLeaderboardData(leaderboardSelectedQuizType, dateQuizTaken);
             } else if (viewMode === 'Weekly') {
                 response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate);
             } else if (viewMode === 'All Time') {
@@ -33,7 +33,7 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
 
       return () => clearInterval(intervalId);
 
-  }, [leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate, viewMode]);
+  }, [leaderboardSelectedQuizType, leaderboardStartDate, dateQuizTaken, viewMode]);
 
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
   useEffect(() => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${String(currentDate.getFullYear()).slice(-2)}`;
-    setDailyLeaderboardDate(formattedDate);
+    setdateQuizTaken(formattedDate);
 }, []);
 
 useEffect(() => {
@@ -88,7 +88,7 @@ useEffect(() => {
 };
 
 const handleDailyDateChange = (direction) => {
-  const dateParts = dailyLeaderboardDate.split('/');
+  const dateParts = dateQuizTaken.split('/');
   const day = parseInt(dateParts[0]);
   const month = parseInt(dateParts[1]) - 1; // JavaScript months are 0-indexed
   const year = 2000 + parseInt(dateParts[2]);
@@ -104,7 +104,7 @@ const handleDailyDateChange = (direction) => {
 
   const formattedDailyDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${String(currentDate.getFullYear()).slice(-2)}`;
 
-  setDailyLeaderboardDate(formattedDailyDate);
+  setdateQuizTaken(formattedDailyDate);
 };
 
 
@@ -245,7 +245,7 @@ const handleDailyDateChange = (direction) => {
          )}
         {viewMode !== 'Weekly' && (
     <div>
-        <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('previous')}>{'<'}</span> {dailyLeaderboardDate}
+        <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('previous')}>{'<'}</span> {dateQuizTaken}
         <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('next')}>{'>'}</span>
     </div>
 )}
