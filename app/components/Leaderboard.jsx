@@ -9,30 +9,32 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
     const [dailyLeaderboardDate, setDailyLeaderboardDate] = useState('');
 
     useEffect(() => {
-     
       const fetchLeaderboardData = async () => {
-          try {
-              let response;
-              if (viewMode === 'Daily') {
-                  response = await getLeaderboardData(leaderboardSelectedQuizType, dailyLeaderboardDate, );
-              } else if (viewMode === 'Weekly') {
-                  response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate);
-              } else if (viewMode === 'All Time') {
-                  response = await getLeaderboardData(leaderboardSelectedQuizType);
-              }
-              if (response) {
-              setLeaderboardData(response.data);
-              }
-          } catch (error) {
-              console.error('Error fetching leaderboard data:', error);
-          }
-      };
+        try {
+            let response;
+            if (viewMode === 'Daily') {
+                response = await getLeaderboardData(leaderboardSelectedQuizType, dailyLeaderboardDate);
+            } else if (viewMode === 'Weekly') {
+                response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate);
+            } else if (viewMode === 'All Time') {
+                response = await getLeaderboardData(leaderboardSelectedQuizType);
+            }
+            console.log('API Response:', response.data);
+            if (response && response.data) {
+                setLeaderboardData(response.data);
+            }
+          
+        } catch (error) {
+            console.error('Error fetching leaderboard data:', error);
+        }
+    };    
 
-      const intervalId = setInterval(fetchLeaderboardData, 2000); 
+      const intervalId = setInterval(fetchLeaderboardData, 2000);
 
-        return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId);
 
   }, [leaderboardSelectedQuizType, leaderboardStartDate, dailyLeaderboardDate, viewMode]);
+
 
     useEffect(() => {
       const quizTypeBorders = {

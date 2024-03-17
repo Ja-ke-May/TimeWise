@@ -55,7 +55,7 @@ useEffect(() => {
     const leaderboardData = {
       quizType: selectedQuizType,
       quizDate: quizStartDate,
-      dateQuizTaken: formattedDate,
+      dailyLeaderboardDate: formattedDate,
       userName: userName,
       totalScore: totalScore,
     };
