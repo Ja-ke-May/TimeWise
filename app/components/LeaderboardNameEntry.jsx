@@ -7,30 +7,38 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
   const [submitted, setSubmitted] = useState(false);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [userPosition, setUserPosition] = useState(null);
+  const [dailyUserPosition, setDailyUserPosition] = useState(null);
+  const [allTimeUserPosition, setAllTimeUserPosition] = useState(null);
+  const [dateQuizTaken, setdateQuizTaken] = useState('')
+
+  const getCurrentDateInUKFormat = () => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = String(currentDate.getFullYear()).slice(-2); // Get last two digits of the year
+    return `${day}/${month}/${year}`;
+  };
+
+  useEffect(() => {
+    const currentDate = getCurrentDateInUKFormat();
+    setdateQuizTaken(currentDate);
+  }, []);
+  
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await getLeaderboardData(selectedQuizType, quizStartDate);
+        const response = await getLeaderboardData(selectedQuizType, quizStartDate, dateQuizTaken);
+        console.log('Fetched leaderboard data:', response); // Log the entire response object
         setLeaderboardData(response.data);
       } catch (error) {
         console.error('Error fetching leaderboard data:', error);
       }
     };
-
+  
     fetchLeaderboard();
-}, [selectedQuizType, quizStartDate, submitted]);
-
-useEffect(() => {
-    
-    const filteredLeaderboard = leaderboardData.filter(entry =>
-      entry.quizType === selectedQuizType && entry.quizDate === quizStartDate
-    );
-
-    const sortedLeaderboard = [...filteredLeaderboard].sort((a, b) => b.totalScore - a.totalScore || a.userName.localeCompare(b.userName));
-    const userIndex = sortedLeaderboard.findIndex(entry => entry.userName === userName && entry.totalScore === totalScore);
-    setUserPosition(userIndex + 1);
-  }, [userName, totalScore, leaderboardData, selectedQuizType, quizStartDate]);
+  }, [selectedQuizType, quizStartDate, dateQuizTaken, submitted]);
+  
 
   const handleInputChange = (e) => {
     const inputText = e.target.value.replace(/[^A-Za-z0-9 ]/g, '').slice(0, 15);
@@ -44,36 +52,68 @@ useEffect(() => {
   };
 
   const handleEnterClick = async () => {
-    const currentDate = new Date(); 
-  const formattedDate = currentDate.toISOString().split('T')[0];
+    const currentDate = getCurrentDateInUKFormat();
+    setdateQuizTaken(currentDate);
 
     const leaderboardData = {
       quizType: selectedQuizType,
       quizDate: quizStartDate,
-      dateQuizTaken: formattedDate,
+      dateQuizTaken: currentDate,
       userName: userName,
       totalScore: totalScore,
     };
-
+  
     setIsLoading(true);
-
+  
     try {
       await postLeaderboardData(leaderboardData);
       console.log('Data successfully submitted to the database');
       setSubmitted(true);
+
+      const { daily, weekly, allTime } = await getLeaderboardData(selectedQuizType, quizStartDate, dateQuizTaken);
+      console.log('Fetched leaderboard data:', { daily, weekly, allTime });
+
+      // All Time leaderboard
+      const sortedAllTime = allTime.sort((a, b) => b.totalScore - a.totalScore);
+      const userIndexAllTime = sortedAllTime.findIndex(entry => entry.userName === userName && entry.totalScore === totalScore);
+      if (userIndexAllTime !== -1) {
+        setAllTimeUserPosition(userIndexAllTime + 1);
+      } else {
+        setAllTimeUserPosition(null); 
+      }
+
+      // Daily leaderboard
+      const sortedDaily = daily.sort((a, b) => b.totalScore - a.totalScore);
+      const userIndexDaily = sortedDaily.findIndex(entry => entry.userName === userName && entry.totalScore === totalScore);
+      if (userIndexDaily !== -1) {
+        setDailyUserPosition(userIndexDaily + 1); 
+      } else {
+        setDailyUserPosition(null); 
+      }
+
+      // Weekly leaderboard
+      const sortedWeekly = weekly.sort((a, b) => b.totalScore - a.totalScore);
+      const userIndexWeekly = sortedWeekly.findIndex(entry => entry.userName === userName && entry.totalScore === totalScore);
+      if (userIndexWeekly !== -1) {
+        setUserPosition(userIndexWeekly + 1); 
+      } else {
+        setUserPosition(null);
+      }
     } catch (error) {
       console.error('Error submitting data to the database:', error);
     } finally {
       setIsLoading(false);
     }
-  };
+};
 
   const isButtonDisabled = isLoading || userName.trim() === '' || submitted;
 
  if (submitted) {
     return (
       <div className='m-2 text-xl text-center justify-center'>
-        <p>Your Leaderboard Position: {userPosition}</p>
+         <p>Daily Leaderboard Position: {dailyUserPosition}</p>
+        <p>Weekly Leaderboard Position: {userPosition}</p>
+        <p>All Time Leaderboard Position: {allTimeUserPosition}</p>
       </div>
     );
   }

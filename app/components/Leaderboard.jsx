@@ -2,39 +2,34 @@ import { useState, useEffect } from 'react';
 import { getLeaderboardData } from "@/apiClient";
 
 const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizType, leaderboardStartDate, setLeaderboardStartDate }) => {
-    const [leaderboardData, setLeaderboardData] = useState([]);
-    const [sortedLeaderboardData, setSortedLeaderboardData] = useState([]);
+  const [leaderboardData, setLeaderboardData] = useState({ weekly: [], daily: [], allTime: [] });
     const [viewMode, setViewMode] = useState('Weekly');
     const [dynamicBorder, setDynamicBorder] = useState('');
-    const [dateQuizTaken, setdateQuizTaken] = useState('');
+    const [leaderboardDateQuizTaken, setleaderboardDateQuizTaken] = useState('');
 
     useEffect(() => {
-      const fetchLeaderboardData = async () => {
-        try {
-            let response;
-            if (viewMode === 'Daily') {
-                response = await getLeaderboardData(leaderboardSelectedQuizType, dateQuizTaken);
-            } else if (viewMode === 'Weekly') {
-                response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate);
-            } else if (viewMode === 'All Time') {
-                response = await getLeaderboardData(leaderboardSelectedQuizType);
-            }
-            console.log('API Response:', response.data);
-            if (response && response.data) {
-                setLeaderboardData(response.data);
-            }
-          
-        } catch (error) {
-            console.error('Error fetching leaderboard data:', error);
-        }
-    };    
-
-      const intervalId = setInterval(fetchLeaderboardData, 2000);
-
+      const fetchLeaderboard = async () => {
+          try {
+              const response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate, leaderboardDateQuizTaken);
+              console.log('Fetched leaderboard data:', response); 
+              setLeaderboardData(response.data);
+          } catch (error) {
+              console.error('Error fetching leaderboard data:', error);
+          }
+      };
+  
+      fetchLeaderboard();
+  
+      const intervalId = setInterval(fetchLeaderboard, 3000);
+  
       return () => clearInterval(intervalId);
+  }, [leaderboardSelectedQuizType, leaderboardStartDate, leaderboardDateQuizTaken]);  
 
-  }, [leaderboardSelectedQuizType, leaderboardStartDate, dateQuizTaken, viewMode]);
-
+  useEffect(() => {
+      const currentDate = new Date();
+      const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${String(currentDate.getFullYear()).slice(-2)}`;
+      setleaderboardDateQuizTaken(formattedDate);
+  }, []);
 
     useEffect(() => {
       const quizTypeBorders = {
@@ -49,19 +44,6 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
 
       setDynamicBorder(quizTypeBorders[leaderboardSelectedQuizType] || '');
   }, [leaderboardSelectedQuizType]);
-
-  useEffect(() => {
-    const currentDate = new Date();
-    const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${String(currentDate.getFullYear()).slice(-2)}`;
-    setdateQuizTaken(formattedDate);
-}, []);
-
-useEffect(() => {
-  if (Array.isArray(leaderboardData) && leaderboardData.length > 0) {
-      const sortedData = [...leaderboardData].sort((a, b) => b.totalScore - a.totalScore);
-      setSortedLeaderboardData(sortedData);
-  }
-}, [leaderboardData, viewMode]);
 
 
   const handleWeeklyDateChange = (direction) => {
@@ -88,7 +70,7 @@ useEffect(() => {
 };
 
 const handleDailyDateChange = (direction) => {
-  const dateParts = dateQuizTaken.split('/');
+  const dateParts = leaderboardDateQuizTaken.split('/');
   const day = parseInt(dateParts[0]);
   const month = parseInt(dateParts[1]) - 1; // JavaScript months are 0-indexed
   const year = 2000 + parseInt(dateParts[2]);
@@ -104,7 +86,7 @@ const handleDailyDateChange = (direction) => {
 
   const formattedDailyDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${String(currentDate.getFullYear()).slice(-2)}`;
 
-  setdateQuizTaken(formattedDailyDate);
+  setleaderboardDateQuizTaken(formattedDailyDate);
 };
 
 
@@ -226,50 +208,41 @@ const handleDailyDateChange = (direction) => {
         </div>
         <hr className={`m-3 border-pink-500 rounded-full`} />
         <div>
-  <span className="mr-2 cursor-pointer" onClick={() => toggleViewMode('previous')}>{'<'}</span>
-  {viewMode}
-  <span className="ml-2 cursor-pointer" onClick={() => toggleViewMode('next')}>{'>'}</span>
-</div>
+          <span className="mr-2 cursor-pointer" onClick={() => toggleViewMode('previous')}>{'<'}</span>
+          {viewMode}
+          <span className="ml-2 cursor-pointer" onClick={() => toggleViewMode('next')}>{'>'}</span>
+        </div>
         <hr className={`m-3 border-pink-500 rounded-full`} />
 
         {viewMode !== 'All Time' && ( 
-    <div className='m-2'>
-       {viewMode !== 'Daily' && (
-       <div><p> Quiz Start Date: </p>
-       
-        <div>
-            <span className="ml-2 cursor-pointer" onClick={() => handleWeeklyDateChange('previous')}>{'<'}</span> {leaderboardStartDate}
-            <span className="ml-2 cursor-pointer" onClick={() => handleWeeklyDateChange('next')}>{'>'}</span>
-        </div>
-        </div>
-         )}
-        {viewMode !== 'Weekly' && (
-    <div>
-        <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('previous')}>{'<'}</span> {dateQuizTaken}
-        <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('next')}>{'>'}</span>
-    </div>
-)}
-
-    </div>
+          <div className='m-2'>
+            {viewMode !== 'Daily' && (
+              <div>
+                <p> Quiz Start Date: </p>
+                <div>
+                  <span className="ml-2 cursor-pointer" onClick={() => handleWeeklyDateChange('previous')}>{'<'}</span> {leaderboardStartDate}
+                  <span className="ml-2 cursor-pointer" onClick={() => handleWeeklyDateChange('next')}>{'>'}</span>
+                </div>
+              </div>
+            )}
+            {viewMode !== 'Weekly' && (
+              <div>
+                <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('previous')}>{'<'}</span> {leaderboardDateQuizTaken}
+                <span className="ml-2 cursor-pointer" onClick={() => handleDailyDateChange('next')}>{'>'}</span>
+              </div>
+            )}
+          </div>
         )}
-        <table className="w-full border-collapse mt-4">
-          <thead>
-            <tr>
-              <th className="border border-pink-500"></th>
-              <th className="border border-pink-500 p-2 text-xs">Name</th>
-              <th className="border border-pink-500 text-xs">Score</th>
-            </tr>
-          </thead>
-          <tbody>
-  {sortedLeaderboardData.slice(0, 999).map((entry, index) => (
-    <tr key={index + 1}>
-      <td className="border border-pink-500">{index + 1}</td>
-      <td className="border border-pink-500 p-2 text-xl">{entry.userName}</td>
-      <td className="border border-pink-500 text-xl">{entry.totalScore}</td>
+       <table className="w-full border-collapse mt-4">
+  <thead>
+    <tr>
+      <th className="border border-pink-500"></th>
+      <th className="border border-pink-500 p-2 text-xs">Name</th>
+      <th className="border border-pink-500 text-xs">Score</th>
     </tr>
-  ))}
-</tbody>
-        </table>
+  </thead> 
+
+</table>
       </div>
     </div>
   );
