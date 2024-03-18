@@ -10,9 +10,8 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
     useEffect(() => {
       const fetchLeaderboard = async () => {
           try {
-              const response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate, leaderboardDateQuizTaken);
-              console.log('Fetched leaderboard data:', response); 
-              setLeaderboardData(response.data);
+              const response = await getLeaderboardData(leaderboardSelectedQuizType, leaderboardStartDate, leaderboardDateQuizTaken); 
+              setLeaderboardData(response);
           } catch (error) {
               console.error('Error fetching leaderboard data:', error);
           }
@@ -20,7 +19,7 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
   
       fetchLeaderboard();
   
-      const intervalId = setInterval(fetchLeaderboard, 3000);
+      const intervalId = setInterval(fetchLeaderboard, 2000);
   
       return () => clearInterval(intervalId);
   }, [leaderboardSelectedQuizType, leaderboardStartDate, leaderboardDateQuizTaken]);  
@@ -234,6 +233,7 @@ const handleDailyDateChange = (direction) => {
             )}
           </div>
         )}
+
        <table className="w-full border-collapse mt-4">
           <thead>
             <tr>
