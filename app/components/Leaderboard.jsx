@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getLeaderboardData } from "@/apiClient";
 
 const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizType, leaderboardStartDate, setLeaderboardStartDate }) => {
-  const [leaderboardData, setLeaderboardData] = useState({ weekly: [], daily: [], allTime: [] });
+  const [leaderboardData, setLeaderboardData] = useState({});
     const [viewMode, setViewMode] = useState('Weekly');
     const [dynamicBorder, setDynamicBorder] = useState('');
     const [leaderboardDateQuizTaken, setleaderboardDateQuizTaken] = useState('');
@@ -72,7 +72,7 @@ const Leaderboard = ({ leaderboardSelectedQuizType, setLeaderboardSelectedQuizTy
 const handleDailyDateChange = (direction) => {
   const dateParts = leaderboardDateQuizTaken.split('/');
   const day = parseInt(dateParts[0]);
-  const month = parseInt(dateParts[1]) - 1; // JavaScript months are 0-indexed
+  const month = parseInt(dateParts[1]) - 1;
   const year = 2000 + parseInt(dateParts[2]);
   let currentDate = new Date(year, month, day);
 
@@ -196,6 +196,7 @@ const handleDailyDateChange = (direction) => {
     setLeaderboardStartDate(formattedStartDate);
   };
   
+  
   return (
     <div className={`relative mt-60 mb-40 ml-5 mr-5 border-2 ${dynamicBorder}`}>
       <div id="Leaderboard-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
@@ -234,15 +235,33 @@ const handleDailyDateChange = (direction) => {
           </div>
         )}
        <table className="w-full border-collapse mt-4">
-  <thead>
+          <thead>
+            <tr>
+              <th className="border border-pink-500"></th>
+              <th className="border border-pink-500 p-2 text-xs">Name</th>
+              <th className="border border-pink-500 text-xs">Score</th>
+            </tr>
+          </thead>
+         
+          <tbody>
+  {leaderboardData && leaderboardData[viewMode.toLowerCase()] ? (
+    leaderboardData[viewMode.toLowerCase()]
+      .sort((a, b) => b.totalScore - a.totalScore)
+      .map((entry, index) => (
+        <tr key={index}>
+          <td className="border border-pink-500 p-2">{index + 1}</td>
+          <td className="border border-pink-500 p-2">{entry.userName}</td>
+          <td className="border border-pink-500 p-2">{entry.totalScore}</td>
+        </tr>
+      ))
+  ) : (
     <tr>
-      <th className="border border-pink-500"></th>
-      <th className="border border-pink-500 p-2 text-xs">Name</th>
-      <th className="border border-pink-500 text-xs">Score</th>
+      <td colSpan="3" className="border border-pink-500 p-2 text-center">Loading...</td>
     </tr>
-  </thead> 
+  )}
+</tbody>
 
-</table>
+        </table>
       </div>
     </div>
   );
