@@ -244,9 +244,21 @@ const handleDailyDateChange = (direction) => {
           </thead>
          
           <tbody>
-  {leaderboardData && leaderboardData[viewMode.toLowerCase()] ? (
+  {viewMode === 'All Time' && leaderboardData.allTime ? (
+    leaderboardData.allTime
+      .sort((a, b) => b.totalScore - a.totalScore)
+      .slice(0, 999)
+      .map((entry, index) => (
+        <tr key={index}>
+          <td className="border border-pink-500 p-2">{index + 1}</td>
+          <td className="border border-pink-500 p-2">{entry.userName}</td>
+          <td className="border border-pink-500 p-2">{entry.totalScore}</td>
+        </tr>
+      ))
+  ) : viewMode !== 'All Time' && leaderboardData[viewMode.toLowerCase()] ? (
     leaderboardData[viewMode.toLowerCase()]
       .sort((a, b) => b.totalScore - a.totalScore)
+      .slice(0, 999)
       .map((entry, index) => (
         <tr key={index}>
           <td className="border border-pink-500 p-2">{index + 1}</td>

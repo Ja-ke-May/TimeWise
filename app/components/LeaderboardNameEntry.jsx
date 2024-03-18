@@ -29,7 +29,6 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
     const fetchLeaderboard = async () => {
       try {
         const response = await getLeaderboardData(selectedQuizType, quizStartDate, dateQuizTaken);
-        console.log('Fetched leaderboard data:', response); // Log the entire response object
         setLeaderboardData(response.data);
       } catch (error) {
         console.error('Error fetching leaderboard data:', error);
@@ -67,11 +66,9 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
   
     try {
       await postLeaderboardData(leaderboardData);
-      console.log('Data successfully submitted to the database');
       setSubmitted(true);
 
       const { daily, weekly, allTime } = await getLeaderboardData(selectedQuizType, quizStartDate, dateQuizTaken);
-      console.log('Fetched leaderboard data:', { daily, weekly, allTime });
 
       // All Time leaderboard
       const sortedAllTime = allTime.sort((a, b) => b.totalScore - a.totalScore);
