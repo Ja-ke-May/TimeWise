@@ -123,7 +123,7 @@ export default function Home() {
   };
 
   return (
-    <div className="fade-in">
+    
     <main className="bg-black font-mono flex flex-col items-center">
       <Navbar />
 
@@ -143,6 +143,6 @@ export default function Home() {
       
       <Footer />
     </main>
-    </div>
+    
   );
 }
