@@ -124,11 +124,12 @@ export default function Home() {
 
   return (
 <>
-<div className"font-mono flex flex-col items-center">
-    <h1 className="text-3xl md:text-5xl font-bold fixed text-white/60 text-center mt-5">TIMEWISE</h1>
-</div>
+<header className="font-mono flex flex-col items-center z-50">
+<Navbar />
+    <h1 className="text-3xl md:text-5xl font-bold fixed text-white/80 text-center mt-5">TIMEWISE</h1>
+</header>
     <main className="bg-black font-mono flex flex-col items-center">
-      <Navbar />
+      
 
       {currentInstruction === 1 && <QuizTypeButtons onQuizTypeChange={handleQuizTypeChange} />}
     {currentInstruction === 1 && <Welcome quizType={selectedQuizType} containerBorder={containerBorder} onNextClick={handleNextButtonClick} onWelcomeFinish={handleWelcomeFinish} />}
