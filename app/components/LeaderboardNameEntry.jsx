@@ -10,6 +10,17 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
   const [dailyUserPosition, setDailyUserPosition] = useState(null);
   const [allTimeUserPosition, setAllTimeUserPosition] = useState(null);
   const [dateQuizTaken, setdateQuizTaken] = useState('')
+  const [refNumber, setRefNumber] = useState(null); 
+
+  const generateRefNumber = () => {
+    return Math.floor(Math.random() * (1000000000 - 1000) + 1000);
+  };
+
+  useEffect(() => {
+    const currentDate = getCurrentDateInUKFormat();
+    setdateQuizTaken(currentDate);
+    setRefNumber(generateRefNumber());
+  }, []);
 
   const getCurrentDateInUKFormat = () => {
     const currentDate = new Date();
@@ -60,6 +71,7 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
       dateQuizTaken: currentDate,
       userName: userName,
       totalScore: totalScore,
+      refNumber: refNumber,
     };
   
     setIsLoading(true);
@@ -108,6 +120,7 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
  if (submitted) {
     return (
       <div className='m-2 text-xl text-center justify-center'>
+        <p className='text-pink-100'>REF: {refNumber}</p>
          <p>Daily Leaderboard Position: {dailyUserPosition}</p>
         <p>Weekly Leaderboard Position: {userPosition}</p>
         <p>All Time Leaderboard Position: {allTimeUserPosition}</p>
