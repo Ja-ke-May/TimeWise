@@ -122,11 +122,19 @@ export default function Home() {
     setIsAudioOn(!isAudioOn);
   };
 
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
 <>
 <header className="font-mono flex flex-col items-center z-50">
 <Navbar />
-    <h1 className="text-3xl md:text-5xl font-bold fixed text-white/80 text-center mt-5">TIMEWISE</h1>
+    <h1 className="text-3xl md:text-5xl font-bold fixed text-white/80 text-center mt-5" onClick={scrollToBottom}>TIMEWISE</h1>
 </header>
     <main className="bg-black font-mono flex flex-col items-center">
       
