@@ -11,6 +11,7 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
   const [allTimeUserPosition, setAllTimeUserPosition] = useState(null);
   const [dateQuizTaken, setdateQuizTaken] = useState('')
   const [refNumber, setRefNumber] = useState(null); 
+  const [displayedRefNumber, setDisplayedRefNumber] = useState(null);
 
   const generateRefNumber = () => {
     return Math.floor(Math.random() * (1000000000 - 1000) + 1000);
@@ -65,13 +66,16 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
     const currentDate = getCurrentDateInUKFormat();
     setdateQuizTaken(currentDate);
 
+    const newRefNumber = generateRefNumber();
+    setRefNumber(newRefNumber);
+
     const leaderboardData = {
       quizType: selectedQuizType,
       quizDate: quizStartDate,
       dateQuizTaken: currentDate,
       userName: userName,
       totalScore: totalScore,
-      refNumber: refNumber,
+      refNumber: newRefNumber,
     };
   
     setIsLoading(true);
@@ -79,6 +83,8 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
     try {
       await postLeaderboardData(leaderboardData);
       setSubmitted(true);
+
+      setDisplayedRefNumber(newRefNumber);
 
       const { daily, weekly, allTime } = await getLeaderboardData(selectedQuizType, quizStartDate, dateQuizTaken);
 
@@ -120,7 +126,7 @@ const LeaderboardNameEntry = ({ totalScore, selectedQuizType, quizStartDate }) =
  if (submitted) {
     return (
       <div className='m-2 text-xl text-center justify-center'>
-        <p className='text-pink-100'>REF: {refNumber}</p>
+        <p className='text-pink-100'>REF: {displayedRefNumber}</p>
          <p>Daily Leaderboard Position: {dailyUserPosition}</p>
         <p>Weekly Leaderboard Position: {userPosition}</p>
         <p>All Time Leaderboard Position: {allTimeUserPosition}</p>
