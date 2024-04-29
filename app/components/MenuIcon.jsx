@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Menu.css';
+import './menu.css';
 
 const MenuIcon = ( { onMenuToggle } ) => {
   const [isClicked, setIsClicked] = useState(false);
