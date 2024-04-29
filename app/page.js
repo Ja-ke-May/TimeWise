@@ -11,6 +11,8 @@ import Instruction2 from './components/Instruction2';
 import Start from './components/Start';
 import QuizTypeButtons from './components/QuizType';
 import Leaderboard from './components/Leaderboard';
+// import Competition from './components/Competition';
+import Menu from './components/Menu';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -130,6 +132,16 @@ export default function Home() {
     });
   };
 
+  const scrollToQuiz = () => {
+    document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToLeaderboard = () => {
+    document.getElementById('leaderboard').scrollIntoView({ behavior: 'smooth' });
+  };
+
+ 
+
   return (
 <>
 <header className="font-mono flex flex-col items-center z-50">
@@ -138,20 +150,29 @@ export default function Home() {
 </header>
     <main className="bg-black font-mono flex flex-col items-center">
       
-
+      {/* <Competition /> */}
+      <section id="quiz">
       {currentInstruction === 1 && <QuizTypeButtons onQuizTypeChange={handleQuizTypeChange} />}
     {currentInstruction === 1 && <Welcome quizType={selectedQuizType} containerBorder={containerBorder} onNextClick={handleNextButtonClick} onWelcomeFinish={handleWelcomeFinish} />}
     {currentInstruction === 2 && <Instruction1 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} startSeconds={startSeconds} HrColor={HrColor} />}
     {currentInstruction === 3 && <Instruction2 onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} />}
     {currentInstruction === 4 && <Start onNextClick={handleNextButtonClick} onPreviousClick={handlePreviousClick} containerBorder={containerBorder} HrColor={HrColor} />}
     {currentInstruction === 5 && <Quiz startSeconds={startSeconds} selectedQuizType={selectedQuizType} onQuestionsLoad={handleQuestionsLoad}  containerBorder={containerBorder} selectedDifficulty={selectedDifficulty} HrColor={HrColor} onPreviousClick={handlePreviousClick} backToStart={backToStart} quizStartDate={quizStartDate} />}
-
+    </section>
+    <section id="leaderboard">
 <Leaderboard containerBorder={containerBorder} HrColor={HrColor} leaderboardSelectedQuizType={leaderboardSelectedQuizType} setLeaderboardSelectedQuizType={setLeaderboardSelectedQuizType}
          leaderboardStartDate={leaderboardStartDate} setLeaderboardStartDate={setLeaderboardStartDate} />
-
+</section>
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
       <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" loop />
-      
+      <Menu 
+      scrollToQuiz={scrollToQuiz}
+      scrollToLeaderboard={scrollToLeaderboard}
+      scrollToBottom={scrollToBottom}
+          />
+          
+         
+    
       <Footer />
     </main>
     </>

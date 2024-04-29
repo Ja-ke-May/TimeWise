@@ -1,0 +1,102 @@
+.line-through {
+    text-decoration: line-through;
+  }
+
+  .time-animation {
+    animation: changePositionTime 1s forwards;
+  }
+
+  @keyframes changePositionTime {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(17px) translateX(0);
+    }
+    100% {
+        transform: translateY(-5px) translateX(3px);
+      }
+  }
+
+  .wise-animation {
+    animation: changePositionWise 1s forwards;
+  }
+
+  @keyframes changePositionWise {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateX(17px) translateY(22px) rotate(-60deg);
+      }
+  }
+
+  .quiz-animation {
+    animation: changePositionQuiz 1s forwards;
+  }
+
+  @keyframes changePositionQuiz {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-17px) translateX(0)  rotate(0deg);
+    }
+    100% {
+        transform: translateY(-19px) translateX(4px) rotate(60deg);
+      }
+  }
+
+
+
+  .time-animation-reverse {
+    animation: changePositionTimeReverse 1s reverse;
+  }
+
+  @keyframes changePositionTimeReverse {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(17px) translateX(0);
+    }
+    100% {
+        transform: translateY(-5px) translateX(3px);
+      }
+  }
+
+  .wise-animation-reverse {
+    animation: changePositionWiseReverse 1s reverse;
+  }
+
+  @keyframes changePositionWiseReverse {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateX(17px) translateY(22px) rotate(-60deg);
+      }
+  }
+
+  .quiz-animation-reverse {
+    animation: changePositionQuizReverse 1s reverse;
+  }
+
+  @keyframes changePositionQuizReverse {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-17px) translateX(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-19px) translateX(4px) rotate(60deg);
+      }
+  }
+  
