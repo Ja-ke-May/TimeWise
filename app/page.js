@@ -12,6 +12,7 @@ import Start from './components/Start';
 import QuizTypeButtons from './components/QuizType';
 import Leaderboard from './components/Leaderboard';
 // import Competition from './components/Competition';
+import About from './components/About';
 import Menu from './components/Menu';
 
 export default function Home() {
@@ -140,6 +141,12 @@ export default function Home() {
     document.getElementById('leaderboard').scrollIntoView({ behavior: 'smooth' });
   };
 
+  
+  const scrollToAbout = () => {
+    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+  };
+
+
  
 
   return (
@@ -163,12 +170,19 @@ export default function Home() {
 <Leaderboard containerBorder={containerBorder} HrColor={HrColor} leaderboardSelectedQuizType={leaderboardSelectedQuizType} setLeaderboardSelectedQuizType={setLeaderboardSelectedQuizType}
          leaderboardStartDate={leaderboardStartDate} setLeaderboardStartDate={setLeaderboardStartDate} />
 </section>
+
+<section id="about">
+<About containerBorder={containerBorder} />
+</section>
+
     {showAudioButtons && <AudioButtons isAudioOn={isAudioOn} toggleAudio={toggleAudio} />}
       <audio ref={audioPlayerRef} src="audio/inspiring-cinematic-ambient-116199.mp3" loop />
+
       <Menu 
       scrollToQuiz={scrollToQuiz}
       scrollToLeaderboard={scrollToLeaderboard}
       scrollToBottom={scrollToBottom}
+      scrollToAbout={scrollToAbout}
           />
           
          
