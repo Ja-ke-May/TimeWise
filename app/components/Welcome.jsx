@@ -35,7 +35,7 @@ const Welcome = ({ onWelcomeFinish, quizType, containerBorder }) => {
 
   return (
     <div className={`relative mt-20 mb-20 ml-5 mr-5 border-2 ${containerBorder}`}>
-      <div id="welcome-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white md:max-w-2xl">
+      <div id="welcome-container" className="p-6 bg-black bg-opacity-60 rounded mx-auto text-center text-white">
         <div className="text-3xl flex items-center justify-center inset-x-0">
           Welcome to TimeWise
         </div>
