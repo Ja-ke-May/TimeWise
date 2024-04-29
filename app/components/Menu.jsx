@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Menu.css';
+import './menu.css';
 import MenuIcon from './MenuIcon';
 
 const Menu = ( { scrollToBottom, scrollToLeaderboard, scrollToQuiz } ) => {
