@@ -9,7 +9,7 @@ const Menu = ( { scrollToBottom, scrollToLeaderboard, scrollToQuiz, scrollToAbou
   
     const handleMenuClick = () => {
         setShowMenuList(prevState => !prevState);
-      };      
+      };  
 
   return (   
     
@@ -20,7 +20,7 @@ const Menu = ( { scrollToBottom, scrollToLeaderboard, scrollToQuiz, scrollToAbou
 
 <section 
 id="menu-list" 
-className='fixed top-0 left-0 bg-black/80 text-pink-500 font-mono text-xl p-4 pt-20 rounded'
+className='fixed top-0 left-0 bg-black/80 text-pink-500 font-mono text-xl md:text-2xl p-4 pt-20 rounded'
 >
         <ul>
             <li className="cursor-pointer" onClick={scrollToQuiz}>Quiz</li>
