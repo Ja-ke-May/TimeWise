@@ -13,7 +13,7 @@ const About = ({ containerBorder }) => {
             Welcome to TimeWiseQuiz.com, your dynamic destination for thrilling trivia challenges! Dive into a world where knowledge meets excitement, and every moment counts.
           </p>
           <p className="flex items-center justify-center mb-5 md:text-lg">
-            At TimeWise we pride ourselves on offering seven captivating quizzes covering a range of general knowledge-based topics. Each day of the week brings a fresh opportunity to test your expertise in a different field, ensuring endless entertainment and learning.
+          TimeWise offers seven captivating quizzes covering various general knowledge topics. Each day of the week brings a fresh opportunity to test your expertise in a different field, ensuring endless entertainment and learning.
           </p>
           <p className="flex items-center justify-center mb-5 md:text-lg">
             Our unique twist? Time is of the essence. As you tackle each quiz, a timer ticks away, rewarding accurate and swift answers with precious seconds while penalizing mistakes. The ultimate goal? Complete all 33 questions with the most time left on the clock. Can you beat the challenge and claim the top spot on our leaderboards?
@@ -28,7 +28,7 @@ const About = ({ containerBorder }) => {
             Every quiz experience is meticulously crafted for maximum enjoyment and fairness. With questions and answers shuffled randomly and placed dynamically, each session offers a unique challenge. Our carefully curated selection of questions ensures a stimulating experience every time.
           </p>
           
-          <p className="flex items-center justify-center mb-5 md:text-lg">
+          <p className="flex items-center justify-center md:text-lg">
             Ready to put your knowledge to the test?
           </p>
         </div>
