@@ -19,7 +19,7 @@ const About = ({ containerBorder }) => {
             Our unique twist? Time is of the essence. As you tackle each quiz, a timer ticks away, rewarding accurate and swift answers with precious seconds while penalizing mistakes. The ultimate goal? Complete all 33 questions with the most time left on the clock. Can you beat the challenge and claim the top spot on our leaderboards?
           </p>
           <p className="flex items-center justify-center mb-5 md:text-lg">
-            Speaking of leaderboards, we offer daily, weekly, and all-time rankings, fostering friendly competition and community spirit. Simply enter your name to join the fray—no sign-in required. Discuss your results with other users on our Instagram page.
+            Speaking of leaderboards, we offer daily, weekly, and all-time rankings, fostering friendly competition and community spirit. Simply enter your name to join the fray—no sign-in required.
             </p>
             <p className="flex items-center justify-center mb-5 md:text-lg">
             Choose your difficulty setting—easy, normal, or hard—to tailor the challenge to your skill level. Whether you're a trivia novice or a seasoned pro, there's something for everyone at TimeWiseQuiz.com.
