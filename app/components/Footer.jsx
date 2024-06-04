@@ -33,6 +33,11 @@ const Footer = () => {
       <hr className="border-pink-500 w-1/2 m-4" />
 
       <a onClick={scrollToTop} className="hover:text-pink-500 text-lg">Back to Top</a>
+
+      <hr className="border-pink-500 w-1/2 m-4" />
+
+      <a href="https://portfolio-tau-two-33.vercel.app/" className='text-pink-600 underline block m-2' target="_blank" rel="noopener noreferrer">Website by Jacob May</a>
+
     </div>
   );
 };
