@@ -28,7 +28,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-pink-500',
         borderColor: 'border-pink-500',
         newQuestionDay: 'Monday',
-        quizStartDate: getQuizStartDate(1),
+        quizStartDate: '03/06/24',
+        // use this for quizStartDate when changing questions getQuizStartDate(1),
       },
       Music: {
         containerBorder: 'border-orange-500/50 rounded',
@@ -36,7 +37,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-orange-500',
         borderColor: 'border-orange-500',
         newQuestionDay: 'Tuesday',
-        quizStartDate: getQuizStartDate(2),
+        quizStartDate: '04/06/24',
+        // use this for quizStartDate when changing questions getQuizStartDate(2),
       },
       Geography: {
         containerBorder: 'border-green-500/50 rounded',
@@ -44,7 +46,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-green-500',
         borderColor: 'border-green-500',
         newQuestionDay: 'Wednesday',
-        quizStartDate: getQuizStartDate(3),
+        quizStartDate: '05/06/24',
+        // use this for quizStartDate when changing questions getQuizStartDate(3),
       },
       Sport: {
         containerBorder: 'border-blue-500/50 rounded',
@@ -52,7 +55,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-blue-500',
         borderColor: 'border-blue-500',
         newQuestionDay: 'Thursday',
-        quizStartDate: getQuizStartDate(4),
+        quizStartDate: '06/06/24', 
+        // use this for quizStartDate when changing questions getQuizStartDate(4),
       },
       History: {
         containerBorder: 'border-purple-500/50 rounded',
@@ -60,7 +64,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-purple-500',
         borderColor: 'border-purple-500',
         newQuestionDay: 'Friday',
-        quizStartDate: getQuizStartDate(5),
+        quizStartDate: '07/06/24',
+        // use this for quizStartDate when changing questions getQuizStartDate(5),
       },
       PopularCulture: {
         containerBorder: 'border-yellow-500/50 rounded',
@@ -68,7 +73,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-yellow-500',
         borderColor: 'border-yellow-500',
         newQuestionDay: 'Saturday',
-        quizStartDate: getQuizStartDate(6),
+        quizStartDate: '08/06/24',
+        // use this for quizStartDate when changing questions getQuizStartDate(6),
       },
       Science: {
         containerBorder: 'border-teal-500/50 rounded',
@@ -76,7 +82,8 @@ const QuizType = ({ onQuizTypeChange }) => {
         textColor: 'text-teal-500',
         borderColor: 'border-teal-500',
         newQuestionDay: 'Sunday',
-        quizStartDate: getQuizStartDate(0),
+        quizStartDate: '09/06/24',
+        // use this for quizStartDate when changing questions getQuizStartDate(0),
       },
     };
   
